@@ -734,6 +734,114 @@ footer.site a.brand .wm .t1{font-size:27px}
 .ps-l span{background:var(--bg-soft);border:1px solid var(--line);border-radius:7px;padding:3px 8px;font-size:11.5px;color:var(--ink-soft);line-height:1.5}
 .pay-c:hover .ps-l span{border-color:var(--blue-100)}
 @media(max-width:640px){.ps-l span{font-size:11px;padding:3px 7px}}
+
+/* Choix inscription / cours d'essai */
+.pay-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.pay-actions .pay-cta{margin:0;text-decoration:none}
+.pay-trial{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#079ddd;
+  font-weight:800;
+  font-size:14px;
+  text-decoration:none;
+}
+.pay-trial:hover{text-decoration:underline}
+
+.ojn-choice-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(7,19,28,.48);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.ojn-choice-backdrop.is-open{display:flex}
+.ojn-choice-modal{
+  width:min(520px,100%);
+  background:#fff;
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 30px 100px rgba(0,0,0,.24);
+  position:relative;
+}
+.ojn-choice-close{
+  position:absolute;
+  right:18px;
+  top:18px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f0f3f5;
+  font-size:22px;
+  cursor:pointer;
+}
+.ojn-choice-modal .eyebrow{
+  color:#079ddd;
+  margin-bottom:10px;
+}
+.ojn-choice-modal h2{
+  margin:0 40px 8px 0;
+  font-size:34px;
+  line-height:1.05;
+}
+.ojn-choice-modal>p{
+  color:#59636d;
+  margin:0 0 24px;
+}
+.ojn-choice-options{
+  display:grid;
+  gap:12px;
+}
+.ojn-choice-option{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:20px;
+  border-radius:18px;
+  text-decoration:none;
+  border:1px solid #e1e7eb;
+  color:#111;
+  transition:.2s ease;
+}
+.ojn-choice-option:hover{
+  transform:translateY(-2px);
+  border-color:#079ddd;
+}
+.ojn-choice-option.primary{
+  background:#079ddd;
+  color:#fff;
+  border-color:#079ddd;
+}
+.ojn-choice-option strong{
+  display:block;
+  font-size:17px;
+  margin-bottom:3px;
+}
+.ojn-choice-option small{opacity:.72}
+.ojn-choice-arrow{
+  font-size:24px;
+  flex:none;
+}
+@media(max-width:640px){
+  .ojn-choice-modal{padding:26px 20px 20px;border-radius:22px}
+  .ojn-choice-modal h2{font-size:28px}
+  .pay-actions{align-items:flex-start;flex-direction:column;gap:10px}
+}
+
 </style>
 
 <div class="progress" id="prog"></div>
@@ -752,7 +860,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       <a data-nav="contact" href="#contact">Contact</a>
       <a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique</a>
     </nav>
-    <a class="btn btn-dark nav-cta" data-nav="inscription" href="#inscription">Je m'inscris <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+    <a class="btn btn-dark nav-cta js-open-inscription" href="#">Je m'inscris <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
     <button class="burger" id="burger" aria-label="Menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
 </header>
@@ -777,7 +885,7 @@ footer.site a.brand .wm .t1{font-size:27px}
           <h1 class="reveal" style="transition-delay:.08s">Olympic Judo Nice</h1>
           <p class="reveal" style="transition-delay:.16s">Implanté dans tous les quartiers de la ville, l'OJNice propose des cours pour tous les âges, à partir de 3 ans et jusqu'aux vétérans. Fort de 1640 licenciés et de 32 sites au service de la jeunesse niçoise, le club est n°1 en Provence-Alpes-Côte d'Azur et forme régulièrement des champions nationaux et internationaux.</p>
           <div class="hero-actions reveal" style="transition-delay:.24s">
-            <a class="btn btn-dark" data-nav="inscription" href="#inscription">Je m'inscris <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+            <a class="btn btn-dark js-open-inscription" href="#">Je m'inscris <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
             <a class="btn btn-ghost-w" data-nav="actus" href="#actus">Découvrir le club <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
           </div>
         </div>
@@ -888,12 +996,20 @@ footer.site a.brand .wm .t1{font-size:27px}
         <div class="pay-h"><span class="eyebrow">Inscription en ligne</span><h3>Payez votre adhésion en 2 minutes</h3>
           <p>Chaque salle appartient à une <b>zone</b>, indiquée sur sa fiche ci-dessous. Cliquez sur le bouton de votre zone : le tarif et le paiement se font directement sur HelloAsso.</p></div>
         <div class="pay-cards">
-          <a class="pay-c" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-a-inscription-et-re-inscription" target="_blank" rel="noopener">
+          <div class="pay-c">
             <span class="pay-z">Zone A</span><span class="pay-sub">Le tarif s'affiche sur HelloAsso</span><span class="pay-schools" id="pay-list-A"></span>
-            <span class="pay-cta">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
-          <a class="pay-c b" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-b-inscription-et-re-inscription" target="_blank" rel="noopener">
+            <div class="pay-actions">
+              <a class="pay-cta" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-a-inscription-et-re-inscription" target="_blank" rel="noopener">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="pay-trial" href="https://app.ojnice.com/essai">2 cours d'essai gratuits <span>→</span></a>
+            </div>
+          </div>
+          <div class="pay-c b">
             <span class="pay-z">Zone B</span><span class="pay-sub">Le tarif s'affiche sur HelloAsso</span><span class="pay-schools" id="pay-list-B"></span>
-            <span class="pay-cta">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+            <div class="pay-actions">
+              <a class="pay-cta" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-b-inscription-et-re-inscription" target="_blank" rel="noopener">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="pay-trial" href="https://app.ojnice.com/essai">2 cours d'essai gratuits <span>→</span></a>
+            </div>
+          </div>
         </div>
         <p class="pay-note">Paiement sécurisé via HelloAsso · Un doute sur votre zone ? Appelez le professeur de votre dojo.</p>
       </div>
@@ -1816,6 +1932,72 @@ footer.site a.brand .wm .t1{font-size:27px}
 
 
 
+
+
+<div class="ojn-choice-backdrop" id="ojn-choice" aria-hidden="true">
+  <div class="ojn-choice-modal" role="dialog" aria-modal="true" aria-labelledby="ojn-choice-title">
+    <button class="ojn-choice-close" id="ojn-choice-close" aria-label="Fermer">×</button>
+    <span class="eyebrow">REJOINDRE L'OLYMPIC JUDO NICE</span>
+    <h2 id="ojn-choice-title">Que souhaitez-vous faire ?</h2>
+    <p>Choisissez votre parcours en quelques secondes.</p>
+
+    <div class="ojn-choice-options">
+      <a class="ojn-choice-option primary" href="https://app.ojnice.com/essai">
+        <span>
+          <strong>2 cours d'essai gratuits</strong>
+          <small>Découvrir le judo avant de s'inscrire</small>
+        </span>
+        <span class="ojn-choice-arrow">→</span>
+      </a>
+
+      <a class="ojn-choice-option" data-nav="inscription" href="#inscription">
+        <span>
+          <strong>Inscription / Réinscription</strong>
+          <small>Accéder aux inscriptions de la saison</small>
+        </span>
+        <span class="ojn-choice-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const modal = document.getElementById('ojn-choice');
+  const close = document.getElementById('ojn-choice-close');
+
+  const openModal = (e) => {
+    e.preventDefault();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.js-open-inscription').forEach(el => {
+    el.addEventListener('click', openModal);
+  });
+
+  close.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+
+  modal.querySelectorAll('[data-nav="inscription"]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
 
 </body>
 </html>
