@@ -66,9 +66,29 @@ export default async request => {
       }
 
       const body = await request.json().catch(() => null);
-      if (!body || !body.item) return badRequest();
+      if (!body) return badRequest();
 
-      const dbItem = toDbItem(type, body.item);
+      const bulk = Array.isArray(body.items);
+
+      const sourceItems = bulk
+        ? body.items.slice(0, 200)
+        : body.item
+          ? [body.item]
+          : [];
+
+      if (!sourceItems.length) {
+        return badRequest("missing_item");
+      }
+
+      const dbItems = sourceItems.map((item, index) => {
+        const result = toDbItem(type, item);
+
+        if (bulk) {
+          result.sort_order = index;
+        }
+
+        return result;
+      });
 
       const rows = await supabaseRequest(
         `${table}?on_conflict=id`,
@@ -77,15 +97,24 @@ export default async request => {
           headers: {
             Prefer: "resolution=merge-duplicates,return=representation"
           },
-          body: JSON.stringify(dbItem)
+          body: JSON.stringify(bulk ? dbItems : dbItems[0])
         }
       );
 
-      const row = Array.isArray(rows) ? rows[0] : rows;
+      const resultRows = Array.isArray(rows)
+        ? rows
+        : rows
+          ? [rows]
+          : [];
+
+      const data = resultRows.map(row =>
+        fromDbItem(type, row)
+      );
 
       return Response.json({
         ok: true,
-        item: row ? fromDbItem(type, row) : null
+        item: bulk ? null : (data[0] || null),
+        data
       });
     }
 
