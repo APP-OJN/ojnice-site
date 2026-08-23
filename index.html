@@ -1639,6 +1639,50 @@ footer.site a.brand .wm .t1{font-size:27px}
     renderAdmin();
   }
 
+  async function seedCmsFromCurrentBrowserIfEmpty(){
+    try{
+      var check=await fetch('/api/cms/content',{
+        method:'GET',
+        credentials:'same-origin',
+        cache:'no-store'
+      });
+
+      if(!check.ok) return false;
+
+      var current=await check.json().catch(function(){return null;});
+      if(!current || !current.ok || !current.data) return false;
+
+      var types=['news','events','stages','partners'];
+
+      var imported=false;
+
+      for(var i=0;i<types.length;i++){
+        var type=types[i];
+        var serverItems=Array.isArray(current.data[type]) ? current.data[type] : [];
+        var items=Array.isArray(DB[type]) ? DB[type] : [];
+
+        if(serverItems.length || !items.length) continue;
+
+        var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type),{
+          method:'POST',
+          credentials:'same-origin',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({items:items})
+        });
+
+        if(!res.ok){
+          throw new Error('seed_'+type+'_'+res.status);
+        }
+      }
+
+      console.info('CMS OJNice initialisé depuis les contenus existants');
+      return true;
+    }catch(error){
+      console.error('Initialisation CMS impossible',error);
+      return false;
+    }
+  }
+
   async function syncAdminView(){
     try{
       var res=await fetch('/api/admin/session',{
@@ -1653,6 +1697,9 @@ footer.site a.brand .wm .t1{font-size:27px}
         adminAuthed=true;
         adminProfile=data.user;
         adminUser=data.user.email;
+
+        await seedCmsFromCurrentBrowserIfEmpty();
+
         showDash();
         return;
       }
