@@ -3,3 +3,4 @@
 .env.*
 !.env.example
 *.bak
+node_modules/
