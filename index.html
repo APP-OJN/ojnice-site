@@ -1653,32 +1653,45 @@ footer.site a.brand .wm .t1{font-size:27px}
       if(!current || !current.ok || !current.data) return false;
 
       var types=['news','events','stages','partners'];
-
       var imported=false;
 
       for(var i=0;i<types.length;i++){
         var type=types[i];
         var serverItems=Array.isArray(current.data[type]) ? current.data[type] : [];
-        var items=Array.isArray(DB[type]) ? DB[type] : [];
+        var localItems=Array.isArray(DB[type]) ? DB[type] : [];
 
-        if(serverItems.length || !items.length) continue;
-
-        var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type),{
-          method:'POST',
-          credentials:'same-origin',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({items:items})
+        var serverIds={};
+        serverItems.forEach(function(item){
+          if(item && item.id) serverIds[item.id]=true;
         });
 
-        if(!res.ok){
-          throw new Error('seed_'+type+'_'+res.status);
+        var missing=localItems.filter(function(item){
+          return item && item.id && !serverIds[item.id];
+        });
+
+        for(var j=0;j<missing.length;j++){
+          var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type),{
+            method:'POST',
+            credentials:'same-origin',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({item:missing[j]})
+          });
+
+          if(!res.ok){
+            throw new Error('migration_'+type+'_'+res.status);
+          }
+
+          imported=true;
         }
       }
 
-      console.info('CMS OJNice initialisé depuis les contenus existants');
-      return true;
+      if(imported){
+        console.info('Contenus locaux manquants copiés vers le CMS');
+      }
+
+      return imported;
     }catch(error){
-      console.error('Initialisation CMS impossible',error);
+      console.error('Migration CMS impossible',error);
       return false;
     }
   }
