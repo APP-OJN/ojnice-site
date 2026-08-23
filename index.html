@@ -1338,7 +1338,17 @@ footer.site a.brand .wm .t1{font-size:27px}
   var wm='<svg class="wm" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#009FE3"/><path d="M12 9h4.6v14.8c0 2.4-1.7 3.8-4.3 3.8-1.6 0-3-.6-3.9-1.5l1.9-2.7c.5.5 1.1.9 1.8.9.8 0 1.3-.5 1.3-1.5V9Z" fill="#fff"/><circle cx="24.5" cy="21" r="6.2" stroke="#fff" stroke-width="3" fill="none"/></svg>';
 
   function newsMedia(a){var inner=a.img?'<img src="'+a.img+'" alt="">':wm;var play=a.video?'<div class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>':'';return '<div class="ph"><span class="cat">'+(a.c||'Actualité')+'</span>'+inner+play+'</div>';}
-  function newsCard(a,delay){var open=a.u?('href="'+a.u+'" target="_blank" rel="noopener"'):('href="#" onclick="openNews(\''+a.id+'\');return false"');var label=a.u?'Lire l\'article':'Lire la suite';return '<a class="ncard reveal" '+open+' style="transition-delay:'+delay+'s">'+newsMedia(a)+'<div class="b"><div class="date">'+a.d+'</div><h3>'+a.t+'</h3><span class="rd">'+label+' '+arrow+'</span></div></a>';}
+  function newsHasExternalLink(a){
+    if(!a.u)return false;
+    try{
+      var u=new URL(a.u,location.origin);
+      var host=u.hostname.replace(/^www\./,'');
+      return host!=='ojnice.com';
+    }catch(e){
+      return false;
+    }
+  }
+  function newsCard(a,delay){var external=newsHasExternalLink(a);var open=external?('href="'+a.u+'" target="_blank" rel="noopener"'):('href="#" onclick="openNews(\''+a.id+'\');return false"');var label=external?'Lire l\'article':'Lire la suite';return '<a class="ncard reveal" '+open+' style="transition-delay:'+delay+'s">'+newsMedia(a)+'<div class="b"><div class="date">'+a.d+'</div><h3>'+a.t+'</h3><span class="rd">'+label+' '+arrow+'</span></div></a>';}
   function stageCard(s,delay){var cal='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';var loc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>';var pers='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>';
     return '<div class="scard reveal" style="transition-delay:'+delay+'s"><div class="top'+(s.alt?' alt':'')+'"><h3>'+s.t+'</h3><span class="tag">'+s.tag+'</span></div><div class="m"><div class="row">'+cal+'Vacances d\'automne · '+s.days+'</div><div class="row">'+loc+s.dojo+'</div><div class="row">'+pers+s.who+'</div></div><div class="foot"><div class="price">'+s.price+' <small>/ sem.</small></div><a class="btn btn-dark sm" href="'+(s.url||'#contact')+'"'+(s.url?' target="_blank" rel="noopener"':' onclick="prefillStage(\''+s.t.replace(/'/g,'')+'\')"')+'>S\'inscrire <span class="ci">'+arrow+'</span></a></div></div>';}
   function coachCard(c,delay){var init=c.n.split(' ').map(function(x){return x[0];}).slice(0,2).join('');
@@ -1380,7 +1390,42 @@ footer.site a.brand .wm .t1{font-size:27px}
         +'<span class="sp-b"><b>'+esc(p.t)+'</b><span>'+esc(p.d)+'</span></span></a>';}).join('');}
     bindTilts();
   }
+  async function loadCmsPublic(){
+    try{
+      var res=await fetch('/api/cms/content?ts='+Date.now(),{
+        method:'GET',
+        credentials:'same-origin',
+        cache:'no-store'
+      });
+
+      if(!res.ok)throw new Error('cms_public_'+res.status);
+
+      var body=await res.json();
+      if(!body || !body.ok || !body.data)throw new Error('cms_public_invalid');
+
+      ['news','events','stages','partners'].forEach(function(type){
+        if(Array.isArray(body.data[type])){
+          DB[type]=body.data[type];
+        }
+      });
+
+      saveDB();
+      renderPublic();
+
+      if(typeof adminAuthed!=='undefined' && adminAuthed && typeof renderAdmin==='function'){
+        renderAdmin();
+      }
+
+      return true;
+    }catch(error){
+      console.error('Chargement CMS impossible',error);
+      return false;
+    }
+  }
+
   renderPublic();
+  loadCmsPublic();
+
   document.getElementById('coach-grid').innerHTML=coaches.map(function(c,i){return coachCard(c,(i%3)*0.06);}).join('');
 
   /* liste des dojos (page inscription) — cartes visuelles */
@@ -1712,6 +1757,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         adminUser=data.user.email;
 
         await seedCmsFromCurrentBrowserIfEmpty();
+        await loadCmsPublic();
 
         showDash();
         return;
@@ -1808,18 +1854,110 @@ footer.site a.brand .wm .t1{font-size:27px}
     el.innerHTML=h;}
   window.adminEdit=function(type,id){editing[type]=DB[type].filter(function(x){return x.id===id;})[0]||null;renderAdminForm(type);document.getElementById('form-'+type).scrollIntoView({behavior:'smooth',block:'center'});};
   window.adminCancel=function(type){editing[type]=null;renderAdminForm(type);};
-  window.adminDelete=function(type,id){askConfirm('Cet élément sera définitivement supprimé du site.',function(){DB[type]=DB[type].filter(function(x){return x.id!==id;});saveDB();renderPublic();renderAdminList(type);});};
+  window.adminDelete=function(type,id){
+    askConfirm('Cet élément sera définitivement supprimé du site.',async function(){
+      try{
+        var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type)+'&id='+encodeURIComponent(id),{
+          method:'DELETE',
+          credentials:'same-origin'
+        });
+
+        if(!res.ok)throw new Error('delete_'+res.status);
+
+        DB[type]=DB[type].filter(function(x){return x.id!==id;});
+        saveDB();
+        renderPublic();
+        renderAdminList(type);
+      }catch(error){
+        console.error(error);
+        alert('Suppression impossible. Réessaie dans quelques secondes.');
+      }
+    });
+  };
+
   window.adminResetAll=function(){
-    askConfirm('Tous les contenus de démonstration seront remis à zéro.',function(){
-      try{localStorage.removeItem('ojnice_db13');}catch(e){}
-      location.reload();},'Réinitialiser');};
-  window.adminSave=function(type){var o=editing[type]||{id:'x'+Date.now().toString(36)};
-    if(type==='news'){var iso=val('f-news-d');o.t=val('f-news-t')||'Sans titre';o.c=val('f-news-c')||'Actualité';o._iso=iso;o.d=iso?fmtDate(iso):(o.d||'');o.text=val('f-news-x');o.video=val('f-news-v');o.img=tmpImg.news;o.u=val('f-news-u');}
-    else if(type==='events'){o.t=val('f-ev-t')||'Événement';o.d=val('f-ev-d');o.lieu=val('f-ev-l');o.desc=val('f-ev-x');o.url=val('f-ev-u');o.img=tmpImg.events;}
-    else if(type==='stages'){o.t=val('f-st-t')||'Stage';o.tag=val('f-st-tag')||'Tous niveaux';o.days=val('f-st-days');o.dojo=val('f-st-dojo');o.who=val('f-st-who');o.price=val('f-st-price')||'—';o.url=val('f-st-u');o.alt=false;}
-    else{o.t=val('f-pa-t')||'Partenaire';o.cat=(document.getElementById('f-pa-cat')||{}).value||'priv';o.url=val('f-pa-url');o.img=tmpImg.partners;}
-    if(!editing[type])DB[type].unshift(o);
-    editing[type]=null;saveDB();renderPublic();renderAdminList(type);renderAdminForm(type);};
+    alert('La réinitialisation locale est désactivée : les contenus sont maintenant centralisés en ligne.');
+  };
+
+  window.adminSave=async function(type){
+    var wasEditing=!!editing[type];
+    var o=wasEditing
+      ? Object.assign({},editing[type])
+      : {id:'x'+Date.now().toString(36)};
+
+    if(type==='news'){
+      var iso=val('f-news-d');
+      o.t=val('f-news-t')||'Sans titre';
+      o.c=val('f-news-c')||'Actualité';
+      o._iso=iso;
+      o.d=iso?fmtDate(iso):(o.d||'');
+      o.text=val('f-news-x');
+      o.video=val('f-news-v');
+      o.img=tmpImg.news||o.img||'';
+      o.u=val('f-news-u');
+    }
+    else if(type==='events'){
+      o.t=val('f-ev-t')||'Événement';
+      o.d=val('f-ev-d');
+      o.lieu=val('f-ev-l');
+      o.desc=val('f-ev-x');
+      o.url=val('f-ev-u');
+      o.img=tmpImg.events||o.img||'';
+    }
+    else if(type==='stages'){
+      o.t=val('f-st-t')||'Stage';
+      o.tag=val('f-st-tag')||'Tous niveaux';
+      o.days=val('f-st-days');
+      o.dojo=val('f-st-dojo');
+      o.who=val('f-st-who');
+      o.price=val('f-st-price')||'—';
+      o.url=val('f-st-u');
+      o.img=tmpImg.stages||o.img||'';
+      o.alt=Boolean(o.alt);
+    }
+    else{
+      o.t=val('f-pa-t')||'Partenaire';
+      o.cat=(document.getElementById('f-pa-cat')||{}).value||'priv';
+      o.url=val('f-pa-url');
+      o.img=tmpImg.partners||o.img||'';
+      o.svg=o.svg||'';
+    }
+
+    try{
+      var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type),{
+        method:'POST',
+        credentials:'same-origin',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({item:o})
+      });
+
+      if(!res.ok)throw new Error('save_'+res.status);
+
+      var body=await res.json();
+      var saved=body && body.item ? body.item : o;
+
+      if(wasEditing){
+        DB[type]=DB[type].map(function(x){
+          return x.id===saved.id ? saved : x;
+        });
+      }else{
+        DB[type].unshift(saved);
+      }
+
+      editing[type]=null;
+      tmpImg[type]='';
+
+      saveDB();
+      renderPublic();
+      renderAdminList(type);
+      renderAdminForm(type);
+
+      await loadCmsPublic();
+    }catch(error){
+      console.error(error);
+      alert('Enregistrement impossible. Le contenu n’a pas été publié.');
+    }
+  };
 
   ;/* carte réaliste : contour de Nice, pins aux vraies coordonnées, recherche de proximité */
   (function(){
