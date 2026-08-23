@@ -1359,6 +1359,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   function loadDB(){try{var d=JSON.parse(localStorage.getItem('ojnice_db13'));if(d&&d.news&&d.stages&&d.events&&d.partners){if(!d.messages)d.messages=[];return d;}}catch(e){}return {news:DEFAULT_NEWS.slice(),events:DEFAULT_EVENTS.slice(),stages:DEFAULT_STAGES.slice(),partners:DEFAULT_PARTNERS.slice(),messages:[]};}
   function saveDB(){try{localStorage.setItem('ojnice_db13',JSON.stringify(DB));}catch(e){}}
   var DB=loadDB();
+  DB.news=[];
   [DB.news,DB.events,DB.stages,DB.partners].forEach(function(arr){arr.forEach(function(o){if(!o.id)o.id='x'+Math.random().toString(36).slice(2,9);});});
   var MONTHS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
   function fmtDate(iso){if(!iso)return '';var p=(''+iso).split('-');if(p.length!==3)return iso;return (+p[2])+' '+MONTHS[+p[1]-1]+' '+p[0];}
@@ -1684,63 +1685,6 @@ footer.site a.brand .wm .t1{font-size:27px}
     renderAdmin();
   }
 
-  async function seedCmsFromCurrentBrowserIfEmpty(){
-    try{
-      var check=await fetch('/api/cms/content',{
-        method:'GET',
-        credentials:'same-origin',
-        cache:'no-store'
-      });
-
-      if(!check.ok) return false;
-
-      var current=await check.json().catch(function(){return null;});
-      if(!current || !current.ok || !current.data) return false;
-
-      var types=['news','events','stages','partners'];
-      var imported=false;
-
-      for(var i=0;i<types.length;i++){
-        var type=types[i];
-        var serverItems=Array.isArray(current.data[type]) ? current.data[type] : [];
-        var localItems=Array.isArray(DB[type]) ? DB[type] : [];
-
-        var serverIds={};
-        serverItems.forEach(function(item){
-          if(item && item.id) serverIds[item.id]=true;
-        });
-
-        var missing=localItems.filter(function(item){
-          return item && item.id && !serverIds[item.id];
-        });
-
-        for(var j=0;j<missing.length;j++){
-          var res=await fetch('/api/cms/admin?type='+encodeURIComponent(type),{
-            method:'POST',
-            credentials:'same-origin',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({item:missing[j]})
-          });
-
-          if(!res.ok){
-            throw new Error('migration_'+type+'_'+res.status);
-          }
-
-          imported=true;
-        }
-      }
-
-      if(imported){
-        console.info('Contenus locaux manquants copiés vers le CMS');
-      }
-
-      return imported;
-    }catch(error){
-      console.error('Migration CMS impossible',error);
-      return false;
-    }
-  }
-
   async function syncAdminView(){
     try{
       var res=await fetch('/api/admin/session',{
@@ -1756,7 +1700,6 @@ footer.site a.brand .wm .t1{font-size:27px}
         adminProfile=data.user;
         adminUser=data.user.email;
 
-        await seedCmsFromCurrentBrowserIfEmpty();
         await loadCmsPublic();
 
         showDash();
@@ -1771,10 +1714,70 @@ footer.site a.brand .wm .t1{font-size:27px}
 
   var editing={news:null,events:null,stages:null,partners:null};
   var tmpImg={news:'',events:'',stages:'',partners:''};
+  var tmpDoc={news:'',events:'',stages:'',partners:''};
   function esc(s){return (''+(s==null?'':s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
   function val(id){var e=document.getElementById(id);return e?e.value.trim():'';}
-  function resizeImage(file,cb){var img=new Image(),r=new FileReader();r.onload=function(){img.onload=function(){var max=1100,w=img.width,h=img.height;if(w>max){h=Math.round(h*max/w);w=max;}var c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',0.82));};img.src=r.result;};r.readAsDataURL(file);}
-  window.adminPick=function(type,input){var f=input.files[0];if(!f)return;resizeImage(f,function(d){tmpImg[type]=d;var box=document.getElementById('up-'+type);box.className='uploader has';box.innerHTML='<img src="'+d+'" alt="">'+input.outerHTML;var ni=box.querySelector('input');ni.value='';ni.onchange=function(){window.adminPick(type,ni);};});};
+  window.adminPick=async function(type,input){
+    var f=input.files[0];
+    if(!f)return;
+
+    var isPdf=f.type==='application/pdf';
+    var isImage=['image/jpeg','image/png','image/webp'].indexOf(f.type)!==-1;
+
+    if(!isImage && !(type==='news' && isPdf)){
+      alert(type==='news'
+        ? 'Formats acceptés : JPG, JPEG, PNG, WebP ou PDF.'
+        : 'Formats acceptés : JPG, JPEG, PNG ou WebP.');
+      input.value='';
+      return;
+    }
+
+    if(f.size>10*1024*1024){
+      alert('Le fichier dépasse 10 Mo.');
+      input.value='';
+      return;
+    }
+
+    var box=document.getElementById('up-'+type);
+
+    try{
+      if(box){
+        box.className='uploader has';
+        box.innerHTML='<span style="padding:14px">Envoi en cours…</span>';
+      }
+
+      var fd=new FormData();
+      fd.append('file',f);
+      fd.append('type',type);
+
+      var res=await fetch('/api/cms/upload',{
+        method:'POST',
+        credentials:'same-origin',
+        body:fd
+      });
+
+      var body=await res.json().catch(function(){return null;});
+
+      if(!res.ok || !body || !body.ok){
+        throw new Error((body&&body.error)||('upload_'+res.status));
+      }
+
+      if(body.kind==='pdf'){
+        tmpDoc[type]=body.url;
+        tmpImg[type]='';
+        tmpDoc[type]='';
+        if(box)box.innerHTML='<span style="padding:14px"><b>PDF chargé ✓</b></span>';
+      }else{
+        tmpImg[type]=body.url;
+        tmpDoc[type]='';
+        if(box)box.innerHTML='<img src="'+body.url+'" alt="Aperçu">';
+      }
+    }catch(error){
+      console.error(error);
+      alert('Impossible d’envoyer le fichier.');
+      if(box)box.className='uploader';
+    }
+  };
 
   function fmtWhen(iso){var d=new Date(iso);var j=('0'+d.getDate()).slice(-2),m=('0'+(d.getMonth()+1)).slice(-2);
     return j+'/'+m+'/'+d.getFullYear()+' à '+('0'+d.getHours()).slice(-2)+'h'+('0'+d.getMinutes()).slice(-2);}
@@ -1829,7 +1832,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       var thumb=o.img?'<img src="'+o.img+'" alt="">':'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#009FE3" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 15 5-4 4 3 4-5 5 6"/></svg>';
       return '<div class="aitem"><div class="thumb">'+thumb+'</div><div class="meta"><b>'+esc(o.t)+'</b><span>'+esc(sub)+'</span></div><div class="acts"><button class="icon-btn" onclick="adminEdit(\''+type+'\',\''+o.id+'\')" aria-label="Modifier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="icon-btn del" onclick="adminDelete(\''+type+'\',\''+o.id+'\')" aria-label="Supprimer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></div></div>';}).join('');}
   function btns(type){return '<div style="display:flex;gap:10px;margin-top:8px"><button class="btn btn-blue sm" onclick="adminSave(\''+type+'\')">Enregistrer '+arrow+'</button>'+(editing[type]?'<button class="btn btn-white sm" onclick="adminCancel(\''+type+'\')">Annuler</button>':'')+'</div>';}
-  function uploader(type,cur){return '<div class="field"><label>Photo</label><label class="uploader'+(cur?' has':'')+'" id="up-'+type+'">'+(cur?'<img src="'+cur+'" alt="">':'Cliquez pour ajouter une image')+'<input type="file" accept="image/*" hidden onchange="adminPick(\''+type+'\',this)"></label></div>';}
+  function uploader(type,cur){var accept=type==='news'?'image/jpeg,image/png,image/webp,application/pdf':'image/jpeg,image/png,image/webp';var lab=type==='news'?'Photo ou PDF':'Photo';return '<div class="field"><label>'+lab+'</label><label class="uploader'+(cur?' has':'')+'" id="up-'+type+'">'+(cur?'<img src="'+cur+'" alt="">':'Cliquez pour ajouter un fichier')+'<input type="file" accept="'+accept+'" hidden onchange="adminPick(\''+type+'\',this)"></label></div>';}
   function renderAdminForm(type){var e=editing[type]||{};tmpImg[type]=e.img||'';var el=document.getElementById('form-'+type);var h='';
     if(type==='news'){h='<h3>'+(editing.news?'Modifier l\'actualité':'Nouvelle actualité')+'</h3>'
       +'<div class="grid2"><div class="field"><label>Titre</label><input id="f-news-t" value="'+esc(e.t)+'" placeholder="Titre de l\'actualité"></div><div class="field"><label>Catégorie</label><input id="f-news-c" value="'+esc(e.c||'Actualité')+'" placeholder="Ex. Compétition"></div></div>'
@@ -1894,7 +1897,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       o.text=val('f-news-x');
       o.video=val('f-news-v');
       o.img=tmpImg.news||o.img||'';
-      o.u=val('f-news-u');
+      o.u=tmpDoc.news||val('f-news-u');
     }
     else if(type==='events'){
       o.t=val('f-ev-t')||'Événement';
