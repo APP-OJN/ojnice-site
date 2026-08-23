@@ -104,6 +104,7 @@ export function toDbItem(type, item = {}) {
         : 0,
       url: cleanString(item.url, 3000) || null,
       img: cleanString(item.img, 200000) || null,
+      svg: cleanString(item.svg, 200000) || null,
       published: item.published !== false
     };
   }
@@ -160,7 +161,8 @@ export function fromDbItem(type, row) {
       cat: row.cat || "priv",
       priori: row.priori || 0,
       url: row.url || "",
-      img: row.img || ""
+      img: row.img || "",
+      svg: row.svg || ""
     };
   }
 

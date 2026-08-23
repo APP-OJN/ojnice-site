@@ -90,10 +90,6 @@ export default async request => {
     }
 
     if (method === "DELETE") {
-      if (type === "messages") {
-        return badRequest("invalid_operation");
-      }
-
       const id = (url.searchParams.get("id") || "").trim();
       if (!id) return badRequest("missing_id");
 
