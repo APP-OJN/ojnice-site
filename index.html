@@ -1551,24 +1551,115 @@ footer.site a.brand .wm .t1{font-size:27px}
   window.closeModal=function(){document.getElementById('modal').classList.remove('open');};
 
   /* ======================= ADMIN ======================= */
-  var ACCOUNTS={
-   'superadmin@ojnice.test':{h:'43c27b4e263fa191a6a7ec198cd4d5b47d17413c49d77dc533a01720707e3202',role:'super',n:'Super administrateur (démo)'},
-   'admin@ojnice.test':{h:'43c27b4e263fa191a6a7ec198cd4d5b47d17413c49d77dc533a01720707e3202',role:'admin',n:'Olympic Judo Nice (démo)'}
+  var adminAuthed=false, adminUser=null, adminProfile=null;
+
+  function showAdminLogin(){
+    adminAuthed=false;
+    adminUser=null;
+    adminProfile=null;
+    document.getElementById('admin-dash').style.display='none';
+    document.getElementById('admin-login').style.display='';
+  }
+
+  window.adminLogin=async function(e){
+    e.preventDefault();
+
+    var em=(document.getElementById('a-email').value||'').trim().toLowerCase();
+    var pw=document.getElementById('a-pass').value||'';
+    var err=document.getElementById('login-err');
+
+    if(err) err.style.display='none';
+
+    try{
+      var res=await fetch('/api/admin/login',{
+        method:'POST',
+        credentials:'same-origin',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:em,password:pw})
+      });
+
+      var data=await res.json().catch(function(){return {};});
+
+      if(res.ok && data.ok && data.user){
+        adminAuthed=true;
+        adminProfile=data.user;
+        adminUser=data.user.email;
+        document.getElementById('a-pass').value='';
+        showDash();
+      }else{
+        showAdminLogin();
+        if(err) err.style.display='block';
+      }
+    }catch(x){
+      showAdminLogin();
+      if(err) err.style.display='block';
+    }
+
+    return false;
   };
-  var adminAuthed=false, adminUser=null;
-  try{var su=sessionStorage.getItem('ojnice_admin_u'); if(su&&ACCOUNTS[su]){adminAuthed=true;adminUser=su;}}catch(e){}
-  function sha256(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2);}).join('');});}
-  window.adminLogin=function(e){e.preventDefault();var em=(document.getElementById('a-email').value||'').trim().toLowerCase();var pw=document.getElementById('a-pass').value;
-    sha256(pw).then(function(hh){var a=ACCOUNTS[em];
-      if(a&&hh===a.h){adminAuthed=true;adminUser=em;try{sessionStorage.setItem('ojnice_admin_u',em);}catch(x){}showDash();}
-      else{document.getElementById('login-err').style.display='block';}});return false;};
-  window.adminLogout=function(){adminAuthed=false;adminUser=null;try{sessionStorage.removeItem('ojnice_admin_u');}catch(x){}document.getElementById('admin-dash').style.display='none';document.getElementById('admin-login').style.display='';};
-  function showDash(){var a=ACCOUNTS[adminUser]||{n:adminUser,role:'admin'};
-    document.getElementById('admin-login').style.display='none';document.getElementById('admin-dash').style.display='';
-    document.getElementById('admin-who').innerHTML='<span class="rolebadge '+(a.role==='super'?'sup':'')+'">'+(a.role==='super'?'Super admin':'Administrateur')+'</span> '+a.n+' · '+adminUser;
-    var dz=document.getElementById('danger-zone'); if(dz)dz.style.display=(a.role==='super'?'':'none');
-    renderAdmin();}
-  function syncAdminView(){if(adminAuthed)showDash();else{document.getElementById('admin-dash').style.display='none';document.getElementById('admin-login').style.display='';}}
+
+  window.adminLogout=async function(){
+    try{
+      await fetch('/api/admin/logout',{
+        method:'POST',
+        credentials:'same-origin'
+      });
+    }catch(x){}
+
+    showAdminLogin();
+  };
+
+  function showDash(){
+    var a=adminProfile||{
+      email:adminUser||'',
+      name:'Administrateur',
+      role:'admin'
+    };
+
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-dash').style.display='';
+
+    var who=document.getElementById('admin-who');
+    if(who){
+      who.textContent='';
+
+      var badge=document.createElement('span');
+      badge.className='rolebadge '+(a.role==='super'?'sup':'');
+      badge.textContent=(a.role==='super'?'Super admin':'Administrateur');
+
+      who.appendChild(badge);
+      who.appendChild(
+        document.createTextNode(' '+(a.name||'Administrateur')+' · '+(a.email||''))
+      );
+    }
+
+    var dz=document.getElementById('danger-zone');
+    if(dz) dz.style.display=(a.role==='super'?'':'none');
+
+    renderAdmin();
+  }
+
+  async function syncAdminView(){
+    try{
+      var res=await fetch('/api/admin/session',{
+        method:'GET',
+        credentials:'same-origin',
+        cache:'no-store'
+      });
+
+      var data=await res.json().catch(function(){return {};});
+
+      if(res.ok && data.authenticated && data.user){
+        adminAuthed=true;
+        adminProfile=data.user;
+        adminUser=data.user.email;
+        showDash();
+        return;
+      }
+    }catch(x){}
+
+    showAdminLogin();
+  }
 
   [].forEach.call(document.querySelectorAll('.atab'),function(t){t.addEventListener('click',function(){var k=t.getAttribute('data-tab');[].forEach.call(document.querySelectorAll('.atab'),function(x){x.classList.toggle('on',x===t);});[].forEach.call(document.querySelectorAll('.apanel'),function(p){p.classList.toggle('on',p.getAttribute('data-panel')===k);});});});
 
