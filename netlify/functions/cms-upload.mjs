@@ -63,7 +63,6 @@ export default async request => {
         method: "POST",
         headers: {
           apikey: secret,
-          Authorization: `Bearer ${secret}`,
           "Content-Type": file.type,
           "x-upsert": "false"
         },

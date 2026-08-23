@@ -1765,7 +1765,6 @@ footer.site a.brand .wm .t1{font-size:27px}
       if(body.kind==='pdf'){
         tmpDoc[type]=body.url;
         tmpImg[type]='';
-        tmpDoc[type]='';
         if(box)box.innerHTML='<span style="padding:14px"><b>PDF chargé ✓</b></span>';
       }else{
         tmpImg[type]=body.url;
@@ -1949,6 +1948,7 @@ footer.site a.brand .wm .t1{font-size:27px}
 
       editing[type]=null;
       tmpImg[type]='';
+      tmpDoc[type]='';
 
       saveDB();
       renderPublic();
