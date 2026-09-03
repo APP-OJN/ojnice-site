@@ -842,6 +842,44 @@ footer.site a.brand .wm .t1{font-size:27px}
   .pay-actions{align-items:flex-start;flex-direction:column;gap:10px}
 }
 
+/* ===== JJB ===== */
+.page[data-page="jjb"] .phero .ph-bg{opacity:.22;background-position:center 34%}
+.page[data-page="jjb"] .phero::before{background:linear-gradient(95deg,rgba(0,104,152,.92) 0%,rgba(0,124,180,.72) 42%,rgba(0,150,215,.24) 100%),radial-gradient(120% 120% at 0 0,rgba(255,255,255,.14),transparent 45%)}
+.jjb-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;position:relative;z-index:2}
+.jjb-b{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);color:#fff;padding:8px 15px;border-radius:50px;font-size:13.5px;font-weight:600;backdrop-filter:blur(4px)}
+.jjb-b svg{width:15px;height:15px;flex:none}
+.jjb-why{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:18px}
+.jw{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:26px 24px 28px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.jw:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--blue-100)}
+.jw-ic{width:46px;height:46px;border-radius:14px;background:var(--blue-050);color:var(--blue-700);display:grid;place-items:center;margin-bottom:16px}
+.jw-ic svg{width:23px;height:23px}
+.jw h3{font-family:var(--display);font-size:19px;margin-bottom:8px;line-height:1.25}
+.jw p{font-size:14.5px;color:var(--muted);line-height:1.62}
+.jjb-sites{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.js-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.js-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.js-top{background:linear-gradient(135deg,#0083BD,#009FE3 60%,#2FB4F2);color:#fff;padding:24px 26px 22px;position:relative;overflow:hidden}
+.js-top::after{content:"柔";position:absolute;right:14px;bottom:-26px;font-size:92px;line-height:1;color:rgba(255,255,255,.13);pointer-events:none}
+.js-zone{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.36);padding:5px 12px;border-radius:50px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.js-h{font-family:var(--display);font-size:clamp(24px,3vw,30px);color:#fff;margin:12px 0 6px;position:relative;z-index:2}
+.js-addr{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:rgba(255,255,255,.92);position:relative;z-index:2;max-width:34ch}
+.js-addr svg{width:15px;height:15px;flex:none;margin-top:3px}
+.js-body{padding:22px 26px 26px;display:flex;flex-direction:column;gap:20px;flex:1}
+.js-grp{}
+.js-lab{display:flex;align-items:center;gap:9px;font-family:var(--display);font-size:16.5px;color:var(--ink);margin-bottom:12px}
+.js-lab i{width:26px;height:26px;border-radius:9px;background:var(--blue-050);color:var(--blue-700);display:grid;place-items:center;font-style:normal;font-size:14px}
+.js-slots{display:flex;flex-direction:column;gap:8px}
+.js-slot{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.js-d{font-size:14.5px;font-weight:600;color:var(--ink-soft)}
+.js-t{font-family:var(--display);font-size:15px;color:var(--blue-700);white-space:nowrap}
+.js-map{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--ink);align-self:flex-start}
+.js-map svg{width:14px;height:14px;transition:transform .25s}
+.js-card:hover .js-map svg{transform:translate(2px,-2px)}
+.jjb-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;position:relative;z-index:2}
+@media(max-width:860px){.jjb-sites{grid-template-columns:1fr}
+.page[data-page="jjb"] .phero::before{background:linear-gradient(180deg,rgba(0,108,158,.90),rgba(0,130,188,.86)),radial-gradient(120% 120% at 0 0,rgba(255,255,255,.13),transparent 45%)}
+.page[data-page="jjb"] .phero .ph-bg{opacity:.17}
+.jjb-cta .btn{flex:1 1 100%;justify-content:center}}
 </style>
 
 <div class="progress" id="prog"></div>
@@ -854,6 +892,7 @@ footer.site a.brand .wm .t1{font-size:27px}
     <nav class="nav-links" aria-label="Principal">
       <a data-nav="accueil" href="#accueil">Accueil</a>
       <a data-nav="inscription" href="#inscription">Inscription</a>
+      <a data-nav="jjb" href="#jjb">JJB</a>
       <a data-nav="actus" href="#actus">Actus / Événements</a>
       <a data-nav="stages" href="#stages">Stages</a>
       <a data-nav="partenaires" href="#partenaires">Partenaires</a>
@@ -867,6 +906,7 @@ footer.site a.brand .wm .t1{font-size:27px}
 <nav class="mmenu" id="mmenu">
   <a data-nav="accueil" href="#accueil">Accueil</a>
   <a data-nav="inscription" href="#inscription">Inscription</a>
+  <a data-nav="jjb" href="#jjb">Jiu-Jitsu Brésilien</a>
   <a data-nav="actus" href="#actus">Actus / Événements</a>
   <a data-nav="stages" href="#stages">Stages</a>
   <a data-nav="partenaires" href="#partenaires">Partenaires</a>
@@ -1079,6 +1119,86 @@ footer.site a.brand .wm .t1{font-size:27px}
   </div></section>
 </div>
 
+<!-- ================= JJB ================= -->
+<div class="page" data-page="jjb">
+  <div class="phero"><div class="wrap in-w reveal">
+    <div class="crumbs">Accueil / Jiu-Jitsu Brésilien</div>
+    <h1>Le Jiu-Jitsu Brésilien</h1>
+    <p>Discipline de combat au sol, le JJB apprend à se défendre, à garder son calme et à progresser à son rythme. L'Olympic Judo Nice ouvre ses cours aux enfants comme aux adultes, débutants comme pratiquants confirmés, sur deux sites : Nice Est et Nice Ouest.</p>
+    <div class="jjb-badges">
+      <span class="jjb-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>Enfants &amp; adultes</span>
+      <span class="jjb-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>2 sites à Nice</span>
+      <span class="jjb-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>280 € / an, licence comprise</span>
+    </div>
+  </div></div>
+
+  <section class="blk"><div class="wrap">
+    <div class="head reveal"><div><span class="eyebrow">La discipline</span><h2 class="uh">Pourquoi essayer le JJB&nbsp;?</h2><p>Un art martial exigeant et accessible, où la technique prend le pas sur la force.</p></div></div>
+    <div class="jjb-why reveal">
+      <div class="jw"><div class="jw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
+        <h3>Se défendre au sol</h3><p>La plupart des situations réelles finissent au sol. Le JJB donne les clés pour contrôler l'adversaire, se dégager et se protéger.</p></div>
+      <div class="jw"><div class="jw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5m5 0v5"/></svg></div>
+        <h3>Progresser à son rythme</h3><p>Aucun niveau requis pour commencer. Chacun avance selon sa forme et ses objectifs, du tout premier cours aux ceintures supérieures.</p></div>
+      <div class="jw"><div class="jw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A4.5 4.5 0 0 0 5 6.5 3.5 3.5 0 0 0 4 13a3.5 3.5 0 0 0 2 6.3A3.5 3.5 0 0 0 12 21V2.5A2.5 2.5 0 0 0 9.5 2Z"/><path d="M14.5 2A4.5 4.5 0 0 1 19 6.5 3.5 3.5 0 0 1 20 13a3.5 3.5 0 0 1-2 6.3A3.5 3.5 0 0 1 12 21"/></svg></div>
+        <h3>Un vrai travail mental</h3><p>Patience, gestion du stress, lecture de l'adversaire : on surnomme le JJB « les échecs humains ». Sur le tapis, la tête compte autant que le corps.</p></div>
+      <div class="jw"><div class="jw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 0 0 18a14 14 0 0 0 0-18Z"/><path d="M3 12h18"/></svg></div>
+        <h3>Le complément du judo</h3><p>Les judokas y retrouvent et approfondissent le travail au sol (ne-waza), avec une nouvelle lecture du combat. Les deux disciplines se nourrissent l'une l'autre.</p></div>
+    </div>
+  </div></section>
+
+  <section class="blk sec-soft"><div class="wrap">
+    <div class="head reveal"><div><span class="eyebrow">Les créneaux</span><h2 class="uh">Où et quand s'entraîner</h2><p>Deux sites, à l'est et à l'ouest de Nice. Choisissez celui qui vous arrange.</p></div></div>
+    <div class="jjb-sites reveal">
+
+      <div class="js-card">
+        <div class="js-top">
+          <span class="js-zone">OJ Nice Est</span>
+          <h2 class="js-h">L'Ariane</h2>
+          <div class="js-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>École primaire Prévert — L'Ariane, 06300 Nice</span></div>
+        </div>
+        <div class="js-body">
+          <div class="js-grp">
+            <div class="js-lab"><i>👦</i>Enfants</div>
+            <div class="js-slots"><div class="js-slot"><span class="js-d">Lundi</span><span class="js-t">17h15 – 18h15</span></div><div class="js-slot"><span class="js-d">Jeudi</span><span class="js-t">17h15 – 18h15</span></div><div class="js-slot"><span class="js-d">Samedi</span><span class="js-t">11h00 – 12h00</span></div></div>
+          </div>
+          <a class="js-map" href="https://www.google.com/maps/search/?api=1&amp;query=%C3%89cole%20primaire%20Pr%C3%A9vert%20Ariane%20Nice" target="_blank" rel="noopener">Voir l'itinéraire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+      <div class="js-card">
+        <div class="js-top">
+          <span class="js-zone">OJ Nice Ouest</span>
+          <h2 class="js-h">Mercantour</h2>
+          <div class="js-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>114 Bd du Mercantour, 06200 Nice</span></div>
+        </div>
+        <div class="js-body">
+          <div class="js-grp">
+            <div class="js-lab"><i>👦</i>Enfants</div>
+            <div class="js-slots"><div class="js-slot"><span class="js-d">Mercredi</span><span class="js-t">18h00 – 19h00</span></div><div class="js-slot"><span class="js-d">Samedi</span><span class="js-t">17h00 – 18h00</span></div></div>
+          </div>
+          <div class="js-grp">
+            <div class="js-lab"><i>👤</i>Adultes</div>
+            <div class="js-slots"><div class="js-slot"><span class="js-d">Mercredi</span><span class="js-t">19h00 – 20h00</span></div><div class="js-slot"><span class="js-d">Samedi</span><span class="js-t">18h00 – 19h00</span></div></div>
+          </div>
+          <a class="js-map" href="https://www.google.com/maps/search/?api=1&amp;query=114%20Bd%20du%20Mercantour%2006200%20Nice" target="_blank" rel="noopener">Voir l'itinéraire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pay-block reveal">
+      <div class="pay-h"><span class="eyebrow">Adhésion</span><h3>280 € pour l'année, licence comprise</h3>
+        <p>Un tarif unique, tous les créneaux de votre site inclus. Débutants comme pratiquants confirmés sont les bienvenus — contactez le club pour venir découvrir un cours et connaître les modalités d'inscription.</p></div>
+      <div class="jjb-cta">
+        <button class="btn btn-white" type="button" onclick="openClub()">Contacter le club <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+        <a class="btn btn-ghost-w" href="tel:0650858881">06 50 85 88 81</a>
+        <a class="btn btn-ghost-w" href="mailto:infos.ojnice@gmail.com?subject=Renseignements%20Jiu-Jitsu%20Br%C3%A9silien">infos.ojnice@gmail.com</a>
+      </div>
+      <p class="pay-note">Licence fédérale incluse dans le tarif · Renseignements et inscriptions directement auprès du club.</p>
+    </div>
+  </div></section>
+</div>
+
 <!-- ================= CONTACT ================= -->
 <div class="page" data-page="contact">
   <div class="phero"><div class="wrap in-w reveal">
@@ -1187,7 +1307,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         </a>
         <p style="max-width:34ch;color:rgba(255,255,255,.6)">Le plus grand club de judo de la région PACA. 1640 licenciés, 32 sites, une même famille sur toute la ville de Nice.</p>
       </div>
-      <div><h4>Programme</h4><a data-nav="accueil" href="#accueil">Accueil</a><a data-nav="inscription" href="#inscription">Inscription</a><a data-nav="actus" href="#actus">Actus / Événements</a><a data-nav="stages" href="#stages">Stages</a><a data-nav="partenaires" href="#partenaires">Partenaires</a></div>
+      <div><h4>Programme</h4><a data-nav="accueil" href="#accueil">Accueil</a><a data-nav="inscription" href="#inscription">Inscription</a><a data-nav="jjb" href="#jjb">Jiu-Jitsu Brésilien</a><a data-nav="actus" href="#actus">Actus / Événements</a><a data-nav="stages" href="#stages">Stages</a><a data-nav="partenaires" href="#partenaires">Partenaires</a></div>
       <div><h4>Pratique</h4><a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique</a><a data-nav="inscription" href="#inscription">Nos dojos</a><a data-nav="contact" href="#contact">Contact</a></div>
       <div><h4>Contact</h4><a href="tel:0650858881">06 50 85 88 81</a><a href="mailto:infos.ojnice@gmail.com">infos.ojnice@gmail.com</a><a href="https://instagram.com/teamojnice" target="_blank" rel="noopener">Instagram @teamojnice</a></div>
     </div>
@@ -1257,53 +1377,53 @@ footer.site a.brand .wm .t1{font-size:27px}
    {t:'Maillot « OJNICE 06 »',d:'Sans manches · mesh respirant',img:'pJersey',tag:'Édition club'}
   ];
   var HELLOASSO={A:'https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-a-inscription-et-re-inscription',B:'https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-b-inscription-et-re-inscription'};
-  function zoneOf(d){return (d.p&&d.p.indexOf('265')>-1)?'B':'A';}
+  function zoneOf(d){return d.zn||((d.p&&d.p.indexOf('265')>-1)?'B':'A');}
   var EDUC={
    mathieu:{n:'Mathieu',tel:'0745078555',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
-   dylan:{n:'Dylan',tel:'0781537008',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
    momo:{n:'Mohamed J.',tel:'0663467811',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
    lila:{n:'Lila',tel:'0752035663',role:'Éveil & enfants',cat:['mat','prim','benj']},
+   zouk:{n:'Mohamed Z.',tel:'0695562602',role:'Éveil & enfants',cat:['mat','prim','benj']},
    moumen:{n:'Moumen',tel:'0699386585',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
    fedy:{n:'Fedy',tel:'0784910706',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
    seb:{n:'Sébastien',tel:'0753974673',role:'Éveil & enfants',cat:['mat','prim','benj','min']},
-   arnaud:{n:'Arnaud',tel:'0660123201',role:'Cadets · Juniors · Seniors',cat:['cjs','elite']},
+   sargis:{n:'Sargis',tel:'0695960614',role:'Éveil & enfants',cat:['mat','prim']},
+   arnaud:{n:'Arnaud',tel:'0660123201',role:'Cadets · Juniors · Seniors',cat:['cjs','elite','loisir']},
    franck:{n:'Franck',tel:'0683361344',role:'Cadets · Juniors · Seniors',cat:['cjs','elite']},
-   otmane:{n:'Mohamed O.',tel:'0609973365',role:'Cadets · Juniors · Seniors',cat:['cjs','elite']},
    laurent:{n:'Laurent',tel:'0615969012',role:'Adultes · Vétérans',cat:['loisir']}
   };
   var DOJOS=[
-   {n:'Saint-Isidore',z:'ouest',x:92.9,y:239.0,a:'7 av. Angélique Braquet · 06200',e:['mathieu'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.711966,lon:7.19349},
-   {n:'Mercantour',z:'ouest',x:152.0,y:423.6,a:'114 bd du Mercantour · 06200',e:['fedy'],j:'Jeudi',h:'Maternelle 17h30–18h15 · Primaire 18h15–19h15',p:'265 €',lat:43.671731,lon:7.20334},
-   {n:'Digue des Français',z:'ouest',x:148.6,y:397.4,a:'18 traverse de la Digue des Français · 06200',e:['momo'],j:'Lundi',h:'4–8 ans 17h15–18h15 · 9–14 ans 18h15–19h15',p:'265 €',lat:43.67745,lon:7.202771},
-   {n:'Caucade',z:'ouest',x:201.0,y:394.3,a:'126 av. Sainte-Marguerite · 06200',e:['momo'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.678122,lon:7.211504},
-   {n:'Corniche Fleurie',z:'ouest',x:179.8,y:356.5,a:'75 corniche Fleurie · 06200',e:['dylan'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.686355,lon:7.207968},
-   {n:'Saint-Antoine',z:'ouest',x:224.8,y:251.1,a:'13 av. Joseph Durandy · 06200',e:['dylan'],j:'Jeudi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',p:'395 € / 365 €',lat:43.709317,lon:7.215467},
-   {n:'Fabron',z:'ouest',x:204.0,y:357.3,a:'229 av. de la Lanterne · 06200',e:['mathieu'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.686195,lon:7.212005},
-   {n:'Bois de Boulogne',z:'ouest',x:153.8,y:416.3,a:'rue de la Santoline · 06200',e:['fedy'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',p:'265 €',lat:43.673334,lon:7.203627},
-   {n:'Moretti',z:'ouest',x:303.1,y:343.6,a:'373 av. de Fabron · 06200',e:['dylan'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.689165,lon:7.228515},
-   {n:'Baumettes',z:'ouest',x:449.8,y:316.8,a:'13 rue des Potiers · 06200',e:['lila'],j:'Lundi & mercredi',h:'Lun. 17h30–18h30 · Mer. 16h30–17h30 et 17h30–18h30',p:'265 €',lat:43.69501,lon:7.252971},
-   {n:'Nice Flore',z:'ouest',x:177.7,y:409.6,a:'rue Dominique Pue · 06200',e:['momo'],j:'Mercredi',h:'Maternelle 16h–17h · Primaire 17h–18h',p:'265 €',lat:43.67479,lon:7.20762},
-   {n:'AnimaNice Saint-Pancrace',z:'nord',x:356.1,y:121.4,a:'465 av. de Pessicart · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',p:'395 € / 365 €',lat:43.737578,lon:7.237349},
-   {n:'Las Planas',z:'nord',x:422.3,y:150.0,a:'gymnase J.-F. Knecht, Henri Sappia · 06100',e:['momo'],j:'Mercredi & samedi',h:'10h–11h et 11h–12h (mer. et sam.)',p:'265 €',lat:43.731343,lon:7.248387},
-   {n:'Saint-Sylvestre',z:'nord',x:416.4,y:179.3,a:'167 av. Cyrille Besset · 06100',e:['momo'],j:'Mercredi',h:'Maternelle 16h45–17h30 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.724958,lon:7.247394},
-   {n:'Dojo Loïc Pietri — Gorbella',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb'],j:'Lundi, jeudi & samedi',h:'Lun./jeu. 17h–17h45 et 18h–19h · Sam. 10h–10h45 et 11h–12h',p:'395 € / 365 €',lat:43.723407,lon:7.256273},
-   {n:'Rancher',z:'nord',x:506.3,y:174.5,a:'22 vieux chemin de Gairaut · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.726019,lon:7.262376},
-   {n:'Dojo du Ray',z:'nord',x:492.5,y:187.9,a:'Siège du club · section compétition',e:['arnaud','franck','otmane','laurent'],j:'Toute la semaine',h:'Section compétition — cadets, juniors, seniors & vétérans',p:'Sur demande',lat:43.723103,lon:7.260076},
-   {n:'Righi',z:'nord',x:432.1,y:221.9,a:'189 av. de Pessicart · 06100',e:['mathieu'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.715693,lon:7.250023},
-   {n:'Von Derwies',z:'nord',x:501.1,y:217.5,a:'60 av. Alfred Borriglione · 06100',e:['mathieu'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.71665,lon:7.261517},
-   {n:'Les Oliviers',z:'nord',x:441.0,y:158.4,a:'4 rue Guillaume Bonea · 06100',e:['seb'],j:'Mardi',h:'Primaire 16h30–18h',p:'265 €',lat:43.72951,lon:7.2515},
-   {n:'Thérèse Roméo',z:'nord',x:482.7,y:252.2,a:'50 rue Debray · 06100',e:['seb','lila'],j:'Mercredi',h:'Primaire 18h–19h',p:'265 €',lat:43.709086,lon:7.258454},
-   {n:'Paule d’Essling',z:'centre',x:588.2,y:217.0,a:'av. Général Estienne · 06000',e:['lila'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.71676,lon:7.276036},
-   {n:'Jean-Marie Hyvert',z:'centre',x:549.8,y:231.7,a:'89 av. Georges V · 06000',e:['dylan'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.713552,lon:7.269633},
-   {n:'Stanislas',z:'centre',x:566.6,y:262.9,a:'25 av. Émile Bieckert · 06000',e:['dylan'],j:'Mardi',h:'CP–CE2 16h30–17h45 · CM1–6e 17h45–18h45',p:'395 € / 365 €',lat:43.706757,lon:7.272437},
-   {n:'AnimaNice Notre-Dame',z:'centre',x:520.5,y:277.4,a:'18 rue d’Angleterre · 06000',e:['dylan'],j:'Mercredi & samedi',h:'Mer. 9h30–10h30 et 10h30–11h30 · Sam. 9h30–10h30 et 11h30–12h30',p:'265 €',lat:43.703604,lon:7.264745},
-   {n:'Saint-Philippe',z:'centre',x:420.4,y:287.5,a:'4 av. Beau Site · 06000',e:['momo'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',p:'395 € / 365 €',lat:43.701391,lon:7.248074},
-   {n:'L’Ariane',z:'est',x:769.6,y:113.1,a:'14 rue Général Saramito · 06300',e:['moumen'],j:'Lundi & jeudi',h:'17h–18h et 18h–19h',p:'265 €',lat:43.739387,lon:7.306272},
-   {n:'AnimaNice Bon Voyage',z:'est',x:633.6,y:204.4,a:'2 pont René Coty · 06300',e:['moumen','fedy'],j:'Mercredi & samedi',h:'Mer. 10h–11h et 11h–12h · Sam. 13h30–14h30 et 14h30–15h30',p:'265 €',lat:43.7195,lon:7.2836},
-   {n:'Saint-Roch',z:'est',x:678.1,y:233.0,a:'2 rue Fornero Menei · 06300',e:['moumen'],j:'Vendredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',p:'265 €',lat:43.713262,lon:7.29101},
-   {n:'Jean Macé (Pasteur)',z:'est',x:620.4,y:207.7,a:'55 bd Pasteur · 06300',e:['moumen'],j:'Mercredi',h:'Maternelle 16h30–17h30 et 17h30–18h30',p:'265 €',lat:43.718777,lon:7.281394},
-   {n:'Jules Ferry',z:'est',x:618.3,y:245.8,a:'1 rue Jeanne Jugan · 06300',e:['moumen'],j:'Mardi',h:'Maternelle & CP 16h45–17h45 · CE1–6e 18h–19h',p:'265 €',lat:43.710491,lon:7.281051},
-   {n:'Bischofsheim',z:'est',x:689.1,y:265.4,a:'6 rue Louis Garneray · 06300',e:['dylan','fedy'],j:'Mercredi & vendredi',h:'Mer. 17h–18h · Ven. 16h45–17h45 et 18h–19h',p:'395 € / 365 €',lat:43.706201,lon:7.292858}
+   {n:'Saint-Isidore',z:'ouest',x:92.9,y:239.0,a:'7 av. Angélique Braquet · 06200',e:['mathieu'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.711966,lon:7.19349},
+   {n:'Mercantour',z:'ouest',x:152.0,y:423.6,a:'114 bd du Mercantour · 06200',e:['fedy'],j:'Mardi & samedi',h:'Mar. 17h–17h45 maternelle et 18h–19h primaire · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.671731,lon:7.20334},
+   {n:'Digue des Français',z:'ouest',x:148.6,y:397.4,a:'18 traverse de la Digue des Français · 06200',e:['momo'],j:'Lundi',h:'4–8 ans 17h15–18h15 · 9–14 ans 18h15–19h15',zn:'B',lat:43.67745,lon:7.202771},
+   {n:'Caucade',z:'ouest',x:201.0,y:394.3,a:'126 av. Sainte-Marguerite · 06200',e:['momo'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.678122,lon:7.211504},
+   {n:'Corniche Fleurie',z:'ouest',x:179.8,y:356.5,a:'75 corniche Fleurie · 06200',e:['mathieu'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.686355,lon:7.207968},
+   {n:'Saint-Antoine',z:'ouest',x:224.8,y:251.1,a:'13 av. Joseph Durandy · 06200',e:['lila','zouk'],j:'Jeudi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'A',lat:43.709317,lon:7.215467},
+   {n:'Fabron',z:'ouest',x:204.0,y:357.3,a:'229 av. de la Lanterne · 06200',e:['mathieu'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.686195,lon:7.212005},
+   {n:'Bois de Boulogne',z:'ouest',x:153.8,y:416.3,a:'rue de la Santoline · 06200',e:['fedy'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'B',lat:43.673334,lon:7.203627},
+   {n:'Moretti',z:'ouest',x:303.1,y:343.6,a:'373 av. de Fabron · 06200',e:['lila','zouk'],j:'Vendredi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.689165,lon:7.228515},
+   {n:'Baumettes',z:'ouest',x:449.8,y:316.8,a:'13 rue des Potiers · 06200',e:['sargis'],j:'Mercredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.69501,lon:7.252971},
+   {n:'Nice Flore',z:'ouest',x:177.7,y:409.6,a:'rue Dominique Pue · 06200',e:['momo'],j:'Mercredi',h:'Maternelle 16h–17h · Primaire 17h–18h',zn:'B',lat:43.67479,lon:7.20762},
+   {n:'AnimaNice Saint-Pancrace',z:'nord',x:356.1,y:121.4,a:'465 av. de Pessicart · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'A',lat:43.737578,lon:7.237349},
+   {n:'Las Planas',z:'nord',x:422.3,y:150.0,a:'gymnase J.-F. Knecht, Henri Sappia · 06100',e:['momo','arnaud'],j:'Mardi & samedi',h:'Mar. 19h–21h judo loisirs & vétérans · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.731343,lon:7.248387},
+   {n:'Saint-Sylvestre',z:'nord',x:416.4,y:179.3,a:'167 av. Cyrille Besset · 06100',e:['momo'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.724958,lon:7.247394},
+   {n:'Dojo Loïc Piétri — Le Ray',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb','lila'],j:'Lundi, mercredi, jeudi & samedi',h:'Lun. & jeu. 17h–18h (GS à CE1) et 18h–19h (CE2 à CM2) · Mer. & sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.723407,lon:7.256273},
+   {n:'Rancher',z:'nord',x:506.3,y:174.5,a:'22 vieux chemin de Gairaut · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 17h–17h45 · Primaire 18h–19h',zn:'A',lat:43.726019,lon:7.262376},
+   {n:'Le Ray — Élite & compétition',z:'nord',x:492.5,y:187.9,a:'Siège du club · 60 bd Gorbella · 06100',e:['arnaud','franck','laurent'],j:'Mercredi, jeudi, vendredi & samedi',h:'Mer. 14h–15h30 poussins, benjamins & minimes · Jeu. 19h30–21h30 vétérans & loisirs · Ven. 19h30–22h ados & adultes compétition · Sam. 10h30–12h poussins & benjamins et 13h30–15h judo loisirs & kata',zn:'B',lat:43.723103,lon:7.260076},
+   {n:'Righi',z:'nord',x:432.1,y:221.9,a:'189 av. de Pessicart · 06100',e:['fedy'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.715693,lon:7.250023},
+   {n:'Von Derwies',z:'nord',x:501.1,y:217.5,a:'60 av. Alfred Borriglione · 06100',e:['mathieu'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.71665,lon:7.261517},
+   {n:'Les Oliviers',z:'nord',x:441.0,y:158.4,a:'4 rue Guillaume Bonea · 06100',e:['seb'],j:'Mardi',h:'Primaire 16h30–18h',zn:'B',lat:43.72951,lon:7.2515},
+   {n:'Thérèse Roméo',z:'nord',x:482.7,y:252.2,a:'50 rue Debray · 06100',e:['seb','fedy'],j:'Mercredi & vendredi',h:'Mer. 18h–19h primaire · Ven. 16h30–17h45 maternelle et 18h–19h primaire',zn:'B',lat:43.709086,lon:7.258454},
+   {n:'Paule d’Essling',z:'centre',x:588.2,y:217.0,a:'av. Général Estienne · 06000',e:['fedy'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.71676,lon:7.276036},
+   {n:'Jean-Marie Hyvert',z:'centre',x:549.8,y:231.7,a:'89 av. Georges V · 06000',e:['lila','zouk'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.713552,lon:7.269633},
+   {n:'Stanislas',z:'centre',x:566.6,y:262.9,a:'25 av. Émile Bieckert · 06000',e:['lila','zouk'],j:'Mardi',h:'CP–CE2 16h30–17h45 · CM1–6e 17h45–18h45',zn:'A',lat:43.706757,lon:7.272437},
+   {n:'AnimaNice Notre-Dame',z:'centre',x:520.5,y:277.4,a:'18 rue d’Angleterre · 06000',e:['lila','laurent'],j:'Lundi & samedi',h:'Lun. 18h30–20h judo loisirs & vétérans · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.703604,lon:7.264745},
+   {n:'Saint-Philippe',z:'centre',x:420.4,y:287.5,a:'4 av. Beau Site · 06000',e:['momo'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.701391,lon:7.248074},
+   {n:'L’Ariane',z:'est',x:769.6,y:113.1,a:'14 rue Général Saramito · 06300',e:['moumen'],j:'Lundi & jeudi',h:'6–9 ans 17h–18h · 10–15 ans 18h–19h',zn:'B',lat:43.739387,lon:7.306272},
+   {n:'AnimaNice Bon Voyage',z:'est',x:633.6,y:204.4,a:'2 pont René Coty · 06300',e:['moumen','fedy'],j:'Mercredi & samedi',h:'Mer. 10h–11h maternelle et 11h–12h primaire · Sam. 13h30–14h30 maternelle et 14h30–15h30 primaire',zn:'B',lat:43.7195,lon:7.2836},
+   {n:'Saint-Roch',z:'est',x:678.1,y:233.0,a:'2 rue Fornero Menei · 06300',e:['moumen'],j:'Vendredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.713262,lon:7.29101},
+   {n:'Jean Macé (Pasteur)',z:'est',x:620.4,y:207.7,a:'55 bd Pasteur · 06300',e:['moumen'],j:'Mercredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.718777,lon:7.281394},
+   {n:'Jules Ferry',z:'est',x:618.3,y:245.8,a:'1 rue Jeanne Jugan · 06300',e:['moumen'],j:'Mardi',h:'Maternelle & CP 16h45–17h45 · Primaire 18h–19h',zn:'B',lat:43.710491,lon:7.281051},
+   {n:'Bischofsheim',z:'est',x:689.1,y:265.4,a:'6 rue Louis Garneray · 06300',e:['lila','zouk'],j:'Mercredi',h:'Maternelle 17h–18h · Primaire 18h–19h',zn:'A',lat:43.706201,lon:7.292858}
   ];
   var ZONES={ouest:{label:'Nice Ouest',x:130,y:168},nord:{label:'Nice Nord',x:292,y:50},centre:{label:'Nice Centre',x:266,y:330},est:{label:'Nice Est',x:454,y:128}};
   function goZone(z){try{sessionStorage.setItem('oj_zone',z);}catch(e){}if(location.hash==='#inscription'){applyZone(z);}else{location.hash='inscription';}}
@@ -1564,18 +1684,85 @@ footer.site a.brand .wm .t1{font-size:27px}
       f.scrollIntoView({behavior:'smooth',block:'center'});
     },200);
   };
-  window.sendForm=function(e){
+  window.sendForm=async function(e){
     e.preventDefault();
-    var form=e.target, type=form.getAttribute('data-form'), fields={};
-    [].forEach.call(form.querySelectorAll('[data-f]'),function(inp){fields[inp.getAttribute('data-f')]=(inp.value||'').trim();});
-    var labels={contact:'Contact',partner:'Partenariat',stage:'Stage',essai:'Cours d\'essai'};
-    var msg={id:'m'+Date.now().toString(36),type:type,label:labels[type]||'Message',
-             date:new Date().toISOString(),fields:fields,read:false,status:'new'};
-    DB.messages.unshift(msg); saveDB();
-    if(typeof renderAdminMessages==='function'){try{renderAdminMessages();}catch(x){}}
+
+    var form=e.target;
+    var type=form.getAttribute('data-form');
+    var fields={};
+
+    [].forEach.call(
+      form.querySelectorAll('[data-f]'),
+      function(inp){
+        fields[inp.getAttribute('data-f')]=(inp.value||'').trim();
+      }
+    );
+
     var ok=form.querySelector('.form-ok');
-    if(ok){ok.textContent='Merci ! Votre message a bien été envoyé au club. Nous vous répondons sous 48 h.';ok.style.display='block';}
-    form.querySelectorAll('[data-f]').forEach(function(i){i.value='';});
+    var submit=form.querySelector('[type="submit"]');
+
+    if(form.getAttribute('data-sending')==='1'){
+      return false;
+    }
+
+    form.setAttribute('data-sending','1');
+    if(submit)submit.disabled=true;
+
+    if(ok){
+      ok.textContent='Envoi en cours…';
+      ok.style.display='block';
+    }
+
+    try{
+      var res=await fetch('/api/cms/message',{
+        method:'POST',
+        credentials:'same-origin',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          type:type,
+          fields:fields
+        })
+      });
+
+      var body=await res.json().catch(function(){
+        return null;
+      });
+
+      if(!res.ok || !body || !body.ok){
+        throw new Error('message_'+res.status);
+      }
+
+      if(ok){
+        ok.textContent='Merci ! Votre message a bien été envoyé au club. Nous vous répondons sous 48 h.';
+        ok.style.display='block';
+      }
+
+      form.querySelectorAll('[data-f]').forEach(function(i){
+        i.value='';
+      });
+
+      if(
+        typeof adminAuthed!=='undefined' &&
+        adminAuthed &&
+        typeof loadAdminMessages==='function'
+      ){
+        loadAdminMessages();
+      }
+
+    }catch(error){
+      console.error(error);
+
+      if(ok){
+        ok.textContent='Une erreur est survenue. Merci de réessayer.';
+        ok.style.display='block';
+      }
+    }finally{
+      form.removeAttribute('data-sending');
+      if(submit)submit.disabled=false;
+    }
+
     return false;
   };
 
@@ -1701,6 +1888,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         adminUser=data.user.email;
 
         await loadCmsPublic();
+        await loadAdminMessages();
 
         showDash();
         return;
@@ -1780,6 +1968,62 @@ footer.site a.brand .wm .t1{font-size:27px}
 
   function fmtWhen(iso){var d=new Date(iso);var j=('0'+d.getDate()).slice(-2),m=('0'+(d.getMonth()+1)).slice(-2);
     return j+'/'+m+'/'+d.getFullYear()+' à '+('0'+d.getHours()).slice(-2)+'h'+('0'+d.getMinutes()).slice(-2);}
+  async function loadAdminMessages(){
+    try{
+      var res=await fetch('/api/cms/admin?type=messages',{
+        method:'GET',
+        credentials:'same-origin',
+        cache:'no-store'
+      });
+
+      if(!res.ok){
+        throw new Error('messages_'+res.status);
+      }
+
+      var body=await res.json();
+
+      var labels={
+        contact:'Contact',
+        partner:'Partenariat',
+        stage:'Stage',
+        essai:'Cours d\'essai'
+      };
+
+      DB.messages=(body.data||[]).map(function(row){
+        var fields=
+          row.payload &&
+          typeof row.payload==='object'
+            ? row.payload
+            : {};
+
+        if(!Object.keys(fields).length){
+          if(row.name)fields['Nom']=row.name;
+          if(row.email)fields['E-mail']=row.email;
+          if(row.phone)fields['Téléphone']=row.phone;
+          if(row.subject)fields['Objet']=row.subject;
+          if(row.message)fields['Message']=row.message;
+        }
+
+        return {
+          id:row.id,
+          type:row.type||'contact',
+          label:labels[row.type]||'Message',
+          date:row.created_at,
+          fields:fields,
+          read:!!row.is_read,
+          status:row.status||'new'
+        };
+      });
+
+      renderAdminMessages();
+      return true;
+
+    }catch(error){
+      console.error('Chargement messages impossible',error);
+      return false;
+    }
+  }
+
   window.renderAdminMessages=function(){
     var w=document.getElementById('msg-wrap'); if(!w)return;
     var badge=document.getElementById('msg-badge');
@@ -1810,20 +2054,137 @@ footer.site a.brand .wm .t1{font-size:27px}
             +'<button class="btn btn-white sm" onclick="msgDelete(\''+m.id+'\')">Supprimer</button></div></div></div>';
       }).join('');
   };
-  window.msgToggle=function(id){var el=document.getElementById('msg-'+id);if(!el)return;
+  window.msgToggle=async function(id){
+    var el=document.getElementById('msg-'+id);
+    if(!el)return;
+
     el.classList.toggle('open');
-    var m=DB.messages.filter(function(x){return x.id===id;})[0];
-    if(m&&!m.read){m.read=true;saveDB();el.classList.remove('unread');
-      var b=document.getElementById('msg-badge');var u=DB.messages.filter(function(x){return !x.read;}).length;
-      if(b){b.textContent=u||'';b.style.display=u?'inline-grid':'none';}}};
-  window.msgDelete=function(id){askConfirm('Ce message sera définitivement supprimé.',function(){
-    DB.messages=DB.messages.filter(function(x){return x.id!==id;});saveDB();renderAdminMessages();});};
-  window.msgStatus=function(id,s){var m=DB.messages.filter(function(x){return x.id===id;})[0];if(!m)return;
-    m.status=s; if(s!=='new')m.read=true; saveDB();
-    var open=[].map.call(document.querySelectorAll('.msg.open'),function(e){return e.id;});
-    renderAdminMessages();
-    open.forEach(function(idd){var e=document.getElementById(idd);if(e)e.classList.add('open');});};
-  window.msgAllRead=function(){DB.messages.forEach(function(m){m.read=true;});saveDB();renderAdminMessages();};
+
+    var m=DB.messages.filter(function(x){
+      return x.id===id;
+    })[0];
+
+    if(m && !m.read){
+      try{
+        var res=await fetch('/api/cms/admin?type=messages',{
+          method:'PATCH',
+          credentials:'same-origin',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            id:id,
+            is_read:true
+          })
+        });
+
+        if(!res.ok)throw new Error('read_'+res.status);
+
+        m.read=true;
+        renderAdminMessages();
+
+        var reopened=document.getElementById('msg-'+id);
+        if(reopened)reopened.classList.add('open');
+
+      }catch(error){
+        console.error(error);
+      }
+    }
+  };
+
+  window.msgDelete=function(id){
+    askConfirm(
+      'Ce message sera définitivement supprimé.',
+      async function(){
+        try{
+          var res=await fetch(
+            '/api/cms/admin?type=messages&id='+encodeURIComponent(id),
+            {
+              method:'DELETE',
+              credentials:'same-origin'
+            }
+          );
+
+          if(!res.ok)throw new Error('delete_message_'+res.status);
+
+          DB.messages=DB.messages.filter(function(x){
+            return x.id!==id;
+          });
+
+          renderAdminMessages();
+
+        }catch(error){
+          console.error(error);
+          alert('Suppression impossible.');
+        }
+      }
+    );
+  };
+
+  window.msgStatus=async function(id,status){
+    var m=DB.messages.filter(function(x){
+      return x.id===id;
+    })[0];
+
+    if(!m)return;
+
+    try{
+      var res=await fetch('/api/cms/admin?type=messages',{
+        method:'PATCH',
+        credentials:'same-origin',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          id:id,
+          status:status,
+          is_read:status!=='new' ? true : m.read
+        })
+      });
+
+      if(!res.ok)throw new Error('status_'+res.status);
+
+      m.status=status;
+      if(status!=='new')m.read=true;
+
+      renderAdminMessages();
+
+    }catch(error){
+      console.error(error);
+      alert('Modification du statut impossible.');
+    }
+  };
+
+  window.msgAllRead=async function(){
+    var unread=DB.messages.filter(function(m){
+      return !m.read;
+    });
+
+    try{
+      await Promise.all(
+        unread.map(function(m){
+          return fetch('/api/cms/admin?type=messages',{
+            method:'PATCH',
+            credentials:'same-origin',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+              id:m.id,
+              is_read:true
+            })
+          }).then(function(res){
+            if(!res.ok)throw new Error('read_all_'+res.status);
+          });
+        })
+      );
+
+      DB.messages.forEach(function(m){
+        m.read=true;
+      });
+
+      renderAdminMessages();
+
+    }catch(error){
+      console.error(error);
+      alert('Impossible de tout marquer comme lu.');
+    }
+  };
+
   function renderAdmin(){renderAdminMessages();['news','events','stages','partners'].forEach(function(t){renderAdminList(t);renderAdminForm(t);});}
   function renderAdminList(type){var arr=DB[type],el=document.getElementById('list-'+type);
     if(!arr.length){el.innerHTML='<p style="color:var(--muted);padding:6px 0 4px">Aucun élément pour le moment.</p>';return;}
@@ -2209,7 +2570,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   });
   addOrbs(document.querySelector('.shop-vis'),[{w:250,x:'28%',y:'28%',c:'rgba(0,159,227,.6)',o:.5,d:1.5}]);
   function pheroBg(pg,src){var p=document.querySelector('.page[data-page="'+pg+'"] .phero');if(!p)return;var d=document.createElement('div');d.className='ph-bg';d.style.backgroundImage='url('+src+')';p.insertBefore(d,p.firstChild);}
-  pheroBg('inscription',PH.coach);pheroBg('actus',PH.hall);pheroBg('stages',PH.kids);pheroBg('partenaires',PH.action);pheroBg('contact',PH.duo);
+  pheroBg('inscription',PH.coach);pheroBg('actus',PH.hall);pheroBg('stages',PH.kids);pheroBg('partenaires',PH.action);pheroBg('jjb',PH.trio);pheroBg('contact',PH.duo);
 
   /* ombre header au scroll */
   var hdr=document.querySelector('header.site');
