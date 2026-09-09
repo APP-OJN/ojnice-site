@@ -1521,6 +1521,10 @@ footer.site a.brand .wm .t1{font-size:27px}
         +(p.tag?'<span class="sp-tag">'+esc(p.tag)+'</span>':'')
         +'<span class="sp-b"><b>'+esc(p.t)+'</b><span>'+esc(p.d)+'</span></span></a>';}).join('');}
     bindTilts();
+    /* Les contenus du CMS arrivent apres le premier rendu : sans cela, les
+       cartes injectees gardent .reveal sans .in et restent invisibles. */
+    var act=document.querySelector('.page.active');
+    if(act)requestAnimationFrame(function(){observeReveals(act);});
   }
   async function loadCmsPublic(){
     try{
