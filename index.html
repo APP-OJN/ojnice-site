@@ -6,6 +6,7 @@
 <title>Olympic Judo Nice — Club de judo à Nice</title>
 <meta name="description" content="Olympic Judo Nice : 1640 licenciés, 32 dojos dans tous les quartiers de Nice. Judo et jiu-jitsu brésilien, de l'éveil à 3 ans aux vétérans. Inscriptions en ligne.">
 <meta name="theme-color" content="#009FE3">
+<link rel="stylesheet" href="inscription-2026.css">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Olympic Judo Nice">
 <meta property="og:description" content="1640 licenciés, 32 dojos à Nice — de l'éveil aux vétérans.">
@@ -1026,50 +1027,19 @@ footer.site a.brand .wm .t1{font-size:27px}
 <div class="page" data-page="inscription">
   <div class="phero"><div class="wrap in-w reveal">
     <div class="crumbs">Accueil / Inscription</div>
-    <h1>Trouvez votre cours</h1>
-    <p>Présent partout à Nice, choisissez le dojo le plus proche de chez vous. Pour ceux qui le souhaitent, un cours d'essai vous est proposé — il suffit d'appeler le professeur du dojo concerné.</p>
+    <h1>Votre inscription,<br>tout simplement.</h1>
+    <p>Choisissez votre catégorie. Nous vous guidons vers le bon cours et le bon formulaire d’inscription.</p>
   </div></div>
 
   <section class="blk">
     <div class="wrap">
-      <div class="head reveal" style="margin-bottom:16px"><div><span class="eyebrow">Filtrez par âge</span><h2 class="uh">Par catégorie</h2></div></div>
-      <div class="filters reveal" id="cat-filters">
-        <span class="chip-f on" data-cat="all">Toutes</span><span class="chip-f" data-cat="mat">Maternelles</span><span class="chip-f" data-cat="prim">Primaires</span><span class="chip-f" data-cat="benj">Benjamins</span><span class="chip-f" data-cat="min">Minimes</span><span class="chip-f" data-cat="elite">Poussins-Benjamins élites</span><span class="chip-f" data-cat="cjs">Cadets-Juniors-Seniors</span><span class="chip-f" data-cat="loisir">Judo loisirs</span><span class="chip-f" data-cat="jjenf">Jujitsu enfants</span><span class="chip-f" data-cat="jjado">Jujitsu ado &amp; adultes</span>
-      </div>
-      <div class="filters reveal" id="zone-filters" style="margin-top:8px">
-        <span class="chip-f on" data-z="all">Tous les secteurs</span><span class="chip-f" data-z="centre">Nice Centre</span><span class="chip-f" data-z="est">Nice Est</span><span class="chip-f" data-z="nord">Nice Nord</span><span class="chip-f" data-z="ouest">Nice Ouest</span>
-      </div>
-
-      <div class="pay-block reveal">
-        <div class="pay-h"><span class="eyebrow">Inscription en ligne</span><h3>Payez votre adhésion en 2 minutes</h3>
-          <p>Chaque salle appartient à une <b>zone</b>, indiquée sur sa fiche ci-dessous. Cliquez sur le bouton de votre zone : le tarif et le paiement se font directement sur HelloAsso.</p></div>
-        <div class="pay-cards">
-          <div class="pay-c">
-            <span class="pay-z">Zone A</span><span class="pay-sub">Le tarif s'affiche sur HelloAsso</span><span class="pay-schools" id="pay-list-A"></span>
-            <div class="pay-actions">
-              <a class="pay-cta" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-a-inscription-et-re-inscription" target="_blank" rel="noopener">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              <a class="pay-trial" href="https://app.ojnice.com/essai">2 cours d'essai gratuits <span>→</span></a>
-            </div>
-          </div>
-          <div class="pay-c b">
-            <span class="pay-z">Zone B</span><span class="pay-sub">Le tarif s'affiche sur HelloAsso</span><span class="pay-schools" id="pay-list-B"></span>
-            <div class="pay-actions">
-              <a class="pay-cta" href="https://www.helloasso.com/associations/ojnice/adhesions/saison-2026-2027-zone-b-inscription-et-re-inscription" target="_blank" rel="noopener">Inscription &amp; réinscription <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              <a class="pay-trial" href="https://app.ojnice.com/essai">2 cours d'essai gratuits <span>→</span></a>
-            </div>
-          </div>
-        </div>
-        <p class="pay-note">Paiement sécurisé via HelloAsso · Un doute sur votre zone ? Appelez le professeur de votre dojo.</p>
-      </div>
-
-      <div class="head reveal" style="margin:44px 0 18px"><div><span class="eyebrow">Le visuel d'ensemble</span><h2 class="uh">Nos dojos</h2><p>Tous nos points d'entraînement à Nice, secteur par secteur — cliquez pour trouver le professeur correspondant.</p></div></div>
-      <div id="dojo-list"></div>
-      <div id="dojo-empty" style="display:none;text-align:center;padding:40px 20px;color:var(--muted);font-size:15px">Aucun dojo ne correspond à ces filtres. <a id="dojo-reset" style="color:var(--blue-700);cursor:pointer;font-weight:700">Réinitialiser</a></div>
-
-      <div class="head reveal" style="margin:40px 0 14px"><div><span class="eyebrow">L'équipe pédagogique</span><h2 class="uh">Nos professeurs</h2><p>Pour vous inscrire ou réserver un cours d'essai gratuit, appelez directement le professeur du dojo qui vous intéresse.</p></div></div>
+      <div id="registration-guide"></div>
+      <noscript>Activez JavaScript pour choisir votre catégorie et accéder au formulaire adapté, ou appelez le club au 06 50 85 88 81.</noscript>
+      <div id="registration-coaches" hidden>
+      <div class="head" style="margin:40px 0 14px"><div><span class="eyebrow">L'équipe pédagogique</span><h2 class="uh">Vos professeurs</h2><p>Une question sur les cours ? Contactez le professeur de votre dojo.</p></div></div>
       <div id="coach-count" style="font-weight:600;color:var(--muted);margin-bottom:18px;font-size:14.5px"></div>
       <div class="coach-grid" id="coach-grid"></div>
-      <div id="coach-empty" style="display:none;text-align:center;padding:46px 20px;color:var(--muted);font-size:15px">Aucun professeur ne correspond à ces filtres. <a id="coach-reset" style="color:var(--blue-700);cursor:pointer;font-weight:700">Réinitialiser</a></div>
+      </div>
     </div>
   </section>
 </div>
@@ -1323,6 +1293,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   </div>
 </footer>
 
+<script src="inscription-2026.js"></script>
 <script>
 (function(){
   var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -1354,6 +1325,7 @@ footer.site a.brand .wm .t1{font-size:27px}
    +'<text x="6" y="99" font-family="Marianne,Helvetica Neue,Arial" font-size="9.6" font-weight="700" fill="#161616">NATIONALE ET DE LA JEUNESSE</text></svg>';
   var SVG_PCR='<svg viewBox="0 0 300 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Procarrosserie Nice La Trinite">'+'<text x="150" y="40" text-anchor="middle" font-family="Helvetica Neue,Arial" font-size="34" font-weight="700" letter-spacing="-.5" fill="#111">PROCARROSSERIE</text>'+'<rect x="14" y="52" width="272" height="22" rx="2" fill="#111"/>'+'<text x="150" y="67" text-anchor="middle" font-family="Helvetica Neue,Arial" font-size="12" letter-spacing="3" fill="#fff">NICE - LA TRINIT\u00c9</text></svg>';
   var DEFAULT_PARTNERS=[
+   {t:'THEMESYS GROUP',cat:'priv',url:'https://www.groupe-themesys.com/',img:'themesys.svg'},
    {t:'Ville de Nice',cat:'inst',img:PH.vdn},
    {t:'Département des Alpes-Maritimes',cat:'inst',img:PH.d06},
    {t:'France Judo',cat:'inst',img:PH.fj,url:'https://www.ffjudo.com'},
@@ -1414,9 +1386,9 @@ footer.site a.brand .wm .t1{font-size:27px}
    {n:'AnimaNice Saint-Pancrace',z:'nord',x:356.1,y:121.4,a:'465 av. de Pessicart · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'A',lat:43.737578,lon:7.237349},
    {n:'Las Planas',z:'nord',x:422.3,y:150.0,a:'gymnase J.-F. Knecht, Henri Sappia · 06100',e:['momo','arnaud'],j:'Mardi & samedi',h:'Mar. 19h–21h judo loisirs & vétérans · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.731343,lon:7.248387},
    {n:'Saint-Sylvestre',z:'nord',x:416.4,y:179.3,a:'167 av. Cyrille Besset · 06100',e:['momo'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.724958,lon:7.247394},
-   {n:'Dojo Loïc Piétri — Le Ray',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb','lila'],j:'Lundi, mercredi, jeudi & samedi',h:'Lun. & jeu. 17h–17h45 maternelle et 18h–19h primaire · Mer. & sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.723407,lon:7.256273},
+   {n:'Dojo Loïc Piétri — Le Ray',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb','lila'],j:'Lundi, mercredi, jeudi & samedi',h:'Lun. & jeu. 17h–17h45 maternelle et 18h–19h primaire · Mer. & sam. 10h–11h maternelle et 11h–12h primaire',zn:'A',lat:43.723407,lon:7.256273},
    {n:'Rancher',z:'nord',x:506.3,y:174.5,a:'22 vieux chemin de Gairaut · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 17h–17h45 · Primaire 18h–19h',zn:'A',lat:43.726019,lon:7.262376},
-   {n:'Le Ray — Élite & compétition',z:'nord',x:492.5,y:187.9,a:'Siège du club · 60 bd Gorbella · 06100',e:['arnaud','franck','laurent'],j:'Mercredi, jeudi, vendredi & samedi',h:'Mer. 14h–15h30 poussins, benjamins & minimes · Jeu. 19h30–21h30 vétérans & loisirs · Ven. 19h30–22h ados & adultes compétition · Sam. 10h30–12h poussins & benjamins et 13h30–15h judo loisirs & kata',zn:'B',lat:43.723103,lon:7.260076},
+   {n:'Le Ray — Élite & compétition',z:'nord',x:492.5,y:187.9,a:'Siège du club · 60 bd Gorbella · 06100',e:['arnaud','franck','laurent'],j:'Mercredi, jeudi, vendredi & samedi',h:'Mer. 14h–15h30 poussins, benjamins & minimes · Jeu. 19h30–21h30 vétérans & loisirs · Ven. 19h30–22h ados & adultes compétition · Sam. 10h30–12h poussins & benjamins et 13h30–15h judo loisirs & kata',zn:'A',lat:43.723103,lon:7.260076},
    {n:'Righi',z:'nord',x:432.1,y:221.9,a:'189 av. de Pessicart · 06100',e:['fedy'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.715693,lon:7.250023},
    {n:'Von Derwies',z:'nord',x:501.1,y:217.5,a:'60 av. Alfred Borriglione · 06100',e:['mathieu'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.71665,lon:7.261517},
    {n:'Les Oliviers',z:'nord',x:441.0,y:158.4,a:'4 rue Guillaume Bonea · 06100',e:['seb'],j:'Mardi',h:'Primaire 16h30–18h',zn:'B',lat:43.72951,lon:7.2515},
@@ -1436,9 +1408,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   var ZONES={ouest:{label:'Nice Ouest',x:130,y:168},nord:{label:'Nice Nord',x:292,y:50},centre:{label:'Nice Centre',x:266,y:330},est:{label:'Nice Est',x:454,y:128}};
   function goZone(z){try{sessionStorage.setItem('oj_zone',z);}catch(e){}if(location.hash==='#inscription'){applyZone(z);}else{location.hash='inscription';}}
   function goDojo(n){try{sessionStorage.setItem('oj_dojo',n);}catch(e){}if(location.hash==='#inscription'){applyDojo(n);}else{location.hash='inscription';}}
-  function applyZone(z){var all=document.querySelector('#zone-filters [data-z="all"]');if(all&&!all.classList.contains('on'))all.click();
-    var chip=document.querySelector('#zone-filters [data-z="'+z+'"]');if(chip&&!chip.classList.contains('on'))chip.click();
-    setTimeout(function(){var cg=document.getElementById('coach-grid');if(cg)cg.scrollIntoView({behavior:'smooth',block:'start'});},300);}
+  function applyZone(){var guide=document.getElementById('registration-guide');if(guide)guide.scrollIntoView({behavior:'smooth',block:'start'});}
   var DEFAULT_EVENTS=[
     {t:'Reprise des cours — saison 2026/2027',d:'2026-09-07',lieu:'Les 32 dojos de Nice',desc:'Reprise des entraînements partout à Nice. Cours d’essai gratuits pour les nouveaux inscrits.',img:PH.coach},
     {t:'Stages de la Toussaint',d:'2026-10-20',lieu:'Dojo du Ray & Gorbella',desc:'Stages élite et loisirs pendant les vacances d’automne — inscriptions ouvertes.',img:''}
@@ -1497,6 +1467,11 @@ footer.site a.brand .wm .t1{font-size:27px}
   function eventCard(e,delay){var d=e.d?(''+e.d).split('-'):['','',''];var mo=['JAN','FÉV','MAR','AVR','MAI','JUIN','JUIL','AOÛ','SEP','OCT','NOV','DÉC'];var img=e.img?'<img src="'+e.img+'" alt="" style="grid-column:1/-1;width:100%;height:150px;object-fit:cover;border-radius:12px;margin-bottom:4px">':'';
     return '<div class="ev reveal" style="transition-delay:'+delay+'s">'+img+'<div class="cal"><div class="d">'+(d[2]||'')+'</div><div class="mo">'+(mo[+d[1]-1]||'')+'</div></div><div class="ei"><h3>'+e.t+'</h3>'+(e.lieu?'<div class="lieu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>'+e.lieu+'</div>':'')+'<p>'+(e.desc||'')+'</p>'+(e.url?'<a class="ev-lk" href="'+e.url+'" target="_blank" rel="noopener">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>':'')+'</div></div>';}
   function renderPublic(){
+    /* Affichage du nouveau partenaire sans modifier les données du CMS. */
+    var publicPartners=DB.partners.slice();
+    if(!publicPartners.some(function(p){return /themesys|thémésys/i.test(p.t||'');})){
+      publicPartners.push(DEFAULT_PARTNERS.filter(function(p){return p.t==='THEMESYS GROUP';})[0]);
+    }
     document.getElementById('home-news').innerHTML=DB.news.slice(0,4).map(function(a,i){return newsCard(a,i*0.08);}).join('');
     document.getElementById('actus-grid').innerHTML=DB.news.map(function(a,i){return newsCard(a,(i%3)*0.08);}).join('');
     document.getElementById('home-stages').innerHTML=DB.stages.map(function(s,i){return stageCard(s,i*0.08);}).join('');
@@ -1507,10 +1482,10 @@ footer.site a.brand .wm .t1{font-size:27px}
     function pcard(p){var st=(p.t==='adidas'?'font-family:var(--display);font-size:22px;color:var(--ink);':'')+(p.t.indexOf('Boutique du Combat')===0?'color:#F08A24;':'');
       var inner=p.svg?'<span class="psvg">'+p.svg+'</span>':p.img?'<img src="'+p.img+'" alt="'+esc(p.t)+'">':'<span class="pn" style="'+st+'">'+esc(p.t)+'</span>';
       return p.url?'<a class="pcard" href="'+p.url+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="pcard">'+inner+'</div>';}
-    if(pw1&&pw2){pw1.innerHTML=DB.partners.filter(function(p){return p.cat==='inst';}).map(pcard).join('');
-      pw2.innerHTML=DB.partners.filter(function(p){return p.cat!=='inst';}).map(pcard).join('');}
+    if(pw1&&pw2){pw1.innerHTML=publicPartners.filter(function(p){return p.cat==='inst';}).map(pcard).join('');
+      pw2.innerHTML=publicPartners.filter(function(p){return p.cat!=='inst';}).map(pcard).join('');}
     var hp=document.getElementById('home-partners');
-    if(hp){var its=DB.partners.filter(function(p){return p.img||p.svg;}).map(function(p){
+    if(hp){var its=publicPartners.filter(function(p){return p.img||p.svg||/themesys|thémésys/i.test(p.t||'');}).map(function(p){
         var inner=p.svg?'<span class="psvg">'+p.svg+'</span>':p.img?'<img src="'+p.img+'" alt="'+esc(p.t)+'">':'<span class="pmn">'+esc(p.t)+'</span>';
         return '<a class="pitem" '+(p.url?'href="'+p.url+'" target="_blank" rel="noopener"':'')+' title="'+esc(p.t)+'">'+inner+'</a>';}).join('');
       hp.innerHTML=its+its;}
@@ -1564,128 +1539,15 @@ footer.site a.brand .wm .t1{font-size:27px}
 
   document.getElementById('coach-grid').innerHTML=coaches.map(function(c,i){return coachCard(c,(i%3)*0.06);}).join('');
 
-  /* liste des dojos (page inscription) — cartes visuelles */
-  (function(){
-    var el=document.getElementById('dojo-list');if(!el)return;
-    var order=['nord','centre','est','ouest'];
-    function initials(n){return n.replace(/^(AnimaNice|Dojo)\s+/,'').split(/[\s-]+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();}
-    el.innerHTML=order.map(function(k){
-      var cards=DOJOS.filter(function(d){return d.z===k;}).map(function(d,i){
-        var ens=d.e.map(function(x){return EDUC[x].n;}).join(' & ');
-        var dcat={}; d.e.forEach(function(k){(EDUC[k].cat||[]).forEach(function(c){dcat[c]=1;});});
-        return '<article class="djc reveal" data-dojo="'+esc(d.n)+'" data-z="'+d.z+'" data-cat="'+Object.keys(dcat).join(' ')+'" style="transition-delay:'+((i%4)*0.05)+'s">'
-          +'<div class="djc-tile"><span class="djc-nm">'+esc(d.n)+'</span><span class="djc-zn">'+ZONES[d.z].label+'</span></div>'
-          +'<div class="djc-b"><div class="djc-a">'+esc(d.a)+'</div>'
-          +'<div class="djc-e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>'+esc(ens)+'</div>'
-          +'<div class="djc-j"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>'+esc(d.j)+'</b>'+(d.h?'<span class="djc-hh">'+esc(d.h)+'</span>':'')+'</span></div>'+'<div class="djc-pr"><span class="djc-z2">Zone '+zoneOf(d)+'</span></div>'+'<a class="djc-buy" href="'+HELLOASSO[zoneOf(d)]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">S\'inscrire &amp; payer en ligne'+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>'
-          +'<span class="djc-cta">Voir l\'éducateur <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></article>';
-      }).join('');
-      return '<div class="zsec" data-z="'+k+'"><div class="zone-lab">'+ZONES[k].label.toUpperCase()+'</div><div class="dgrid">'+cards+'</div></div>';
-    }).join('');
-    el.addEventListener('click',function(e){var c=e.target.closest('.djc');if(c)applyDojo(c.getAttribute('data-dojo'));});
-  })();
-
-  /* listes des salles par zone tarifaire */
-  (function(){
-    ['A','B'].forEach(function(z){
-      var el=document.getElementById('pay-list-'+z); if(!el)return;
-      var noms=DOJOS.filter(function(d){return zoneOf(d)===z;})
-                    .map(function(d){return d.n.replace(/^(Dojo|AnimaNice)\s+/,'');})
-                    .sort(function(a,b){return a.localeCompare(b,'fr');});
-      el.innerHTML='<b class="ps-t">'+noms.length+' salles concernées</b>'
-        +'<span class="ps-l">'+noms.map(function(n){return '<span>'+n+'</span>';}).join('')+'</span>';
-    });
-  })();
-
-  /* bandeau dojos dynamique */
+  /* Parcours unique : catégorie, dojo facultatif, formulaire adapté. */
+  var registration=OJNRegistration.mount({dojos:DOJOS,educators:EDUC,links:HELLOASSO});
+  window.applyDojo=function(name){registration.selectDojo(name);};
+  /* Le bandeau des dojos conserve son accès au parcours, catégorie obligatoire. */
   (function(){
     var mt=document.getElementById('marq-t');if(!mt)return;
-    var items=DOJOS.map(function(d){return '<span data-d="'+d.n.replace(/"/g,'')+'">'+d.n.replace(/^(Dojo|AnimaNice)\s+/,'')+'</span>';}).join('');
+    var items=DOJOS.map(function(d){return '<span data-d="'+esc(d.n)+'">'+esc(d.n.replace(/^(Dojo|AnimaNice)\s+/,''))+'</span>';}).join('');
     mt.innerHTML=items+items;
     mt.addEventListener('click',function(e){var s=e.target.closest('span');if(s)goDojo(s.getAttribute('data-d'));});
-  })();
-
-  /* ---- inscription: filtrage réel ---- */
-  (function(){
-    var catSel=[],zoneSel=[];
-    var cards=[].slice.call(document.querySelectorAll('#coach-grid .coach'));
-    var countEl=document.getElementById('coach-count');
-    var emptyEl=document.getElementById('coach-empty');
-    function match(cc,cz){
-      var okC=!catSel.length||catSel.some(function(x){return cc.indexOf(x)>-1;});
-      var okZ=!zoneSel.length||zoneSel.some(function(x){return cz.indexOf(x)>-1;});
-      return okC&&okZ;
-    }
-    function apply(){
-      var shown=0;
-      cards.forEach(function(c){
-        var ok=match(c.getAttribute('data-cat').split(' '),c.getAttribute('data-z').split(' '));
-        c.style.display=ok?'':'none'; if(ok)shown++;
-      });
-      // --- fiches dojo synchronisées ---
-      var nd=0;
-      [].forEach.call(document.querySelectorAll('#dojo-list .djc'),function(c){
-        var ok=match((c.getAttribute('data-cat')||'').split(' '),[c.getAttribute('data-z')]);
-        c.style.display=ok?'':'none'; if(ok)nd++;
-      });
-      [].forEach.call(document.querySelectorAll('#dojo-list .zsec'),function(z){
-        var vis=[].filter.call(z.querySelectorAll('.djc'),function(c){return c.style.display!=='none';}).length;
-        z.style.display=vis?'':'none';
-        var lab=z.querySelector('.zone-lab');
-        if(lab)lab.textContent=ZONES[z.getAttribute('data-z')].label.toUpperCase()+' · '+vis+' dojo'+(vis>1?'s':'');
-      });
-      var de=document.getElementById('dojo-empty'); if(de)de.style.display=nd?'none':'block';
-      emptyEl.style.display=shown?'none':'block';
-      var f=(catSel.length||zoneSel.length);
-      countEl.textContent=shown+' professeur'+(shown>1?'s':'')+' · '+nd+' dojo'+(nd>1?'s':'')+(f?' correspondants':' au total');
-    }
-    function bind(id,arr,attr){
-      var g=document.getElementById(id), allChip=g.querySelector('.chip-f');
-      [].forEach.call(g.querySelectorAll('.chip-f'),function(chip){
-        chip.addEventListener('click',function(){
-          var v=chip.getAttribute(attr);
-          if(v==='all'){arr.length=0;[].forEach.call(g.querySelectorAll('.chip-f'),function(x){x.classList.remove('on');});allChip.classList.add('on');}
-          else{chip.classList.toggle('on');var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);if(arr.length)allChip.classList.remove('on');else allChip.classList.add('on');}
-          apply();
-        });
-      });
-    }
-    window.applyDojo=function(dn){
-      catSel.length=0;zoneSel.length=0;
-      [].forEach.call(document.querySelectorAll('#cat-filters .chip-f,#zone-filters .chip-f'),function(x){x.classList.remove('on');});
-      document.querySelector('#cat-filters .chip-f').classList.add('on');
-      document.querySelector('#zone-filters .chip-f').classList.add('on');
-      [].forEach.call(document.querySelectorAll('#dojo-list .djc'),function(c){c.style.display='';});
-      [].forEach.call(document.querySelectorAll('#dojo-list .zsec'),function(z){z.style.display='';
-        var lab=z.querySelector('.zone-lab'); if(lab)lab.textContent=ZONES[z.getAttribute('data-z')].label.toUpperCase();});
-      var de=document.getElementById('dojo-empty'); if(de)de.style.display='none';
-      var shown=0;
-      cards.forEach(function(c){
-        var list=(c.getAttribute('data-dojos')||'').split('|');
-        var ok=list.indexOf(dn)>-1; c.style.display=ok?'':'none';
-        if(ok){shown++;c.classList.add('hit');setTimeout(function(){c.classList.remove('hit');},1400);}
-      });
-      emptyEl.style.display=shown?'none':'block';
-      countEl.innerHTML=shown?('<b>'+dn+'</b> — '+shown+' éducateur'+(shown>1?'s':'')+' · <a id="coach-all" style="color:var(--blue-700);cursor:pointer;font-weight:700">voir tous</a>'):'';
-      var a=document.getElementById('coach-all'); if(a)a.addEventListener('click',function(){resetFilters();});
-      var g=document.getElementById('coach-grid'); if(g)g.scrollIntoView({behavior:'smooth',block:'start'});
-    };
-    function resetFilters(){catSel.length=0;zoneSel.length=0;
-      [].forEach.call(document.querySelectorAll('#cat-filters .chip-f,#zone-filters .chip-f'),function(x){x.classList.remove('on');});
-      document.querySelector('#cat-filters .chip-f').classList.add('on');
-      document.querySelector('#zone-filters .chip-f').classList.add('on');apply();}
-    bind('cat-filters',catSel,'data-cat'); bind('zone-filters',zoneSel,'data-z');
-    var dreset=document.getElementById('dojo-reset');
-    if(dreset)dreset.addEventListener('click',function(){resetFilters();});
-    var coachReset=document.getElementById('coach-reset');
-    if(coachReset)coachReset.addEventListener('click',function(){
-      catSel.length=0;zoneSel.length=0;
-      [].forEach.call(document.querySelectorAll('#cat-filters .chip-f,#zone-filters .chip-f'),function(x){x.classList.remove('on');});
-      document.querySelector('#cat-filters .chip-f').classList.add('on');
-      document.querySelector('#zone-filters .chip-f').classList.add('on');
-      apply();
-    });
-    apply();
   })();
 
   /* ---- formulaires: envoi par mailto ---- */
@@ -2361,7 +2223,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       var t=document.createElementNS(NS,'text');
       t.setAttribute('x',mx);t.setAttribute('y',my-46);t.setAttribute('class','zlabel');
       t.textContent=ZONES[k].label.toUpperCase();
-      t.addEventListener('click',function(){goZone(k);});
+      /* Les secteurs de la carte sont uniquement informatifs. */
       zl.appendChild(t);
     });
 
@@ -2374,19 +2236,16 @@ footer.site a.brand .wm .t1{font-size:27px}
         +'<text class="plabel" x="'+d.x+'" y="'+d.y+'" dy="0" text-anchor="middle">'+d.n.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</text>';
       function showTip(){
         tip.innerHTML='<b>'+d.n+'</b><span>'+d.a+'</span><span>'+d.e.map(function(x){return EDUC[x].n;}).join(' & ')+'</span>'+(d.j?'<span class="tip-j">'+d.j+(d.h?' · '+d.h:'')+'</span>':'')
-          +(isTouch()?'<span class="tip-go">Touchez à nouveau pour vous inscrire</span>':'');
+          +'<span class="tip-go">Horaires et coordonnées du dojo</span>';
         tip.style.left=(d.x/900*100)+'%';tip.style.top=(d.y/560*100)+'%';tip.classList.add('on');}
       p.addEventListener('mouseenter',function(){if(!isTouch())showTip();});
       p.addEventListener('mouseleave',function(){if(!isTouch())tip.classList.remove('on');});
       p.addEventListener('click',function(){
         if(document.getElementById('njmap').dataset.sup)return;
-        if(isTouch()){
-          if(armed!==d.n){ armed=d.n; showTip();
-            [].forEach.call(g.querySelectorAll('.pin'),function(x){x.classList.remove('sel');});
-            p.classList.add('sel'); return; }
-          armed=null; tip.classList.remove('on');
-        }
-        goDojo(d.n);});
+        var same=armed===d.n&&tip.classList.contains('on');
+        [].forEach.call(g.querySelectorAll('.pin'),function(x){x.classList.remove('sel');});
+        if(same){armed=null;tip.classList.remove('on');return;}
+        armed=d.n;showTip();p.classList.add('sel');});
       g.appendChild(p); pinEls[d.n]=p;
     });
 
@@ -2407,13 +2266,16 @@ footer.site a.brand .wm .t1{font-size:27px}
         +top.map(function(o,i){
           return '<button class="ms-item" data-dojo="'+o.d.n.replace(/"/g,'')+'"><span class="ms-rank">'+(i+1)+'</span>'
             +'<span class="ms-txt"><b>'+o.d.n+'</b><span>'+o.d.j+' · '+o.d.a+'</span></span>'
-            +'<span class="ms-km">'+(o.km<1?Math.round(o.km*1000)+' m':o.km.toFixed(1)+' km')+'</span></button>'+'<a class="ms-buy" href="'+HELLOASSO[zoneOf(o.d)]+'" target="_blank" rel="noopener">S\'inscrire (zone '+zoneOf(o.d)+')</a>';
+            +'<span class="ms-km">'+(o.km<1?Math.round(o.km*1000)+' m':o.km.toFixed(1)+' km')+'</span></button>';
         }).join('');
       res.innerHTML+='<button class="ms-club" onclick="openClub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 2.5a2 2 0 0 1-.6 1.9L7.6 9.6a16 16 0 0 0 6 6l1.5-1.4a2 2 0 0 1 1.9-.6l2.5.5a2 2 0 0 1 1.7 2Z"/></svg>Une question ? Contacter le club</button>';
       res.classList.add('on'); toggleClear();
       chip.textContent=top[0].d.n+' à '+(top[0].km<1?Math.round(top[0].km*1000)+' m':top[0].km.toFixed(1)+' km');
       [].forEach.call(res.querySelectorAll('.ms-item'),function(b){
-        b.addEventListener('click',function(){goDojo(b.getAttribute('data-dojo'));});
+        b.addEventListener('click',function(){var name=b.getAttribute('data-dojo');var dd=DOJOS.filter(function(d){return d.n===name;})[0];if(!dd)return;
+          if(window.__focusDojo)window.__focusDojo(dd);
+          tip.innerHTML='<b>'+esc(dd.n)+'</b><span>'+esc(dd.a)+'</span><span>'+esc(dd.h||dd.j)+'</span><span>'+dd.e.map(function(k){return esc(EDUC[k].n)+' · '+esc(EDUC[k].tel);}).join('<br>')+'</span>';
+          tip.style.left='50%';tip.style.top='45%';tip.classList.add('on');});
         b.addEventListener('dblclick',function(){var dd=DOJOS.filter(function(z){return z.n===b.getAttribute('data-dojo');})[0];if(dd&&window.__focusDojo)window.__focusDojo(dd);});
         b.addEventListener('mouseenter',function(){var el=pinEls[b.getAttribute('data-dojo')];if(el)el.classList.add('bounce');});
         b.addEventListener('mouseleave',function(){var el=pinEls[b.getAttribute('data-dojo')];if(el)el.classList.remove('bounce');});
