@@ -8,6 +8,10 @@
     loisir:base+'judo-loisirs-et-veterans-2026-2027',
     competition:base+'inscriptions-elite-cadet-junior-senior'
   };
+  // Dojos qui ont leur propre formulaire (et leur propre tarif) : prioritaire sur la zone.
+  var dojoLinks={
+    'AnimaNice Bon Voyage':{url:'https://www.helloasso.com/beta/associations/ojnice/adhesions/animanice-bon-voyage-2026-2027',price:'170 €',note:'Tarif annuel propre à AnimaNice Bon Voyage · paiement en 3 fois possible sur HelloAsso.'}
+  };
   var categories=[
     {id:'mat',name:'Maternelles',detail:'Éveil au judo'},
     {id:'prim',name:'Primaires',detail:'Judo enfants'},
@@ -48,6 +52,8 @@
     if(cat.id==='jjenf'||cat.id==='jjado')return {url:'#jjb',title:cat.name,price:'Découvrez les cours',note:'Horaires, lieux et inscription sur la page dédiée au jiu-jitsu brésilien.',kind:'jjb'};
     var dojo=dojos.find(function(d){return d.n===state.dojo;});
     if(!dojo||!eligible(dojo,cat.id,state.practice)||!links[dojo.zn])return null;
+    var special=dojoLinks[dojo.n];
+    if(special)return {url:special.url,title:cat.name,price:special.price,note:special.note,kind:'dojo',dojo:dojo};
     return {url:links[dojo.zn],title:cat.name,price:dojo.zn==='A'?'395 € / 355 €':'265 €',note:dojo.zn==='A'?'395 € pour une première inscription · 355 € en réinscription.':'Tarif annuel d’inscription et de réinscription.',kind:'dojo',dojo:dojo};
   }
   function mount(config){
