@@ -598,6 +598,13 @@ img.ring{width:46px;height:46px;border-radius:50%;object-fit:cover;background:#f
 .pay-cta{margin-top:8px;display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--ink)}
 .pay-cta svg{width:14px;height:14px;transition:transform .25s}
 .pay-c:hover .pay-cta svg{transform:translate(2px,-2px)}
+/* mention « aucun remboursement » */
+.no-refund{display:flex;gap:10px;align-items:flex-start;background:#FFF6E5;border:1px solid #F1C787;color:#5A3B00;border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.45;margin:14px 0}
+.no-refund svg{width:18px;height:18px;flex:none;margin-top:1px;color:#B9770E}
+.no-refund b{color:#3B2600}
+.no-refund a{color:inherit;font-weight:700;text-decoration:underline}
+.no-refund.on-blue{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45);color:#fff;position:relative;z-index:2}
+.no-refund.on-blue svg,.no-refund.on-blue b{color:#fff}
 .pay-note{position:relative;z-index:2;margin-top:16px;font-size:12.5px;color:rgba(255,255,255,.85)}
 @media(max-width:640px){.pay-cards{grid-template-columns:1fr}.pay-block{padding:24px}}
 
@@ -1172,6 +1179,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         <button class="btn btn-ghost-w" type="button" onclick="openClub()">Contacter le club</button>
         <a class="btn btn-ghost-w" href="tel:0650858881">06 50 85 88 81</a>
       </div>
+      <p class="no-refund on-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span><b>Aucun remboursement une fois le paiement effectué.</b> C’est pourquoi le club offre <a href="https://app.ojnice.com/essai">2 cours d’essai gratuits</a> : testez avant de vous inscrire.</span></p>
       <p class="pay-note">Paiement sécurisé via HelloAsso · Licence fédérale incluse dans le tarif · Une question ? <a href="mailto:infos.ojnice@gmail.com?subject=Renseignements%20Jiu-Jitsu%20Br%C3%A9silien" style="color:#fff;text-decoration:underline">infos.ojnice@gmail.com</a></p>
     </div>
   </div></section>
@@ -1384,9 +1392,9 @@ footer.site a.brand .wm .t1{font-size:27px}
    {n:'Baumettes',z:'ouest',x:449.8,y:316.8,a:'13 rue des Potiers · 06200',e:['sargis'],j:'Mercredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.69501,lon:7.252971},
    {n:'Nice Flore',z:'ouest',x:177.7,y:409.6,a:'rue Dominique Pue · 06200',e:['momo'],j:'Mercredi',h:'Maternelle 16h–17h · Primaire 17h–18h',zn:'B',lat:43.67479,lon:7.20762},
    {n:'AnimaNice Saint-Pancrace',z:'nord',x:356.1,y:121.4,a:'465 av. de Pessicart · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'A',lat:43.737578,lon:7.237349},
-   {n:'Las Planas',z:'nord',x:422.3,y:150.0,a:'gymnase J.-F. Knecht, Henri Sappia · 06100',e:['momo','arnaud'],j:'Mardi & samedi',h:'Mar. 19h–21h judo loisirs & vétérans · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.731343,lon:7.248387},
+   {n:'Las Planas',z:'nord',x:422.3,y:150.0,a:'gymnase J.-F. Knecht, Henri Sappia · 06100',e:['momo'],j:'Samedi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'B',lat:43.731343,lon:7.248387},
    {n:'Saint-Sylvestre',z:'nord',x:416.4,y:179.3,a:'167 av. Cyrille Besset · 06100',e:['momo'],j:'Mardi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.724958,lon:7.247394},
-   {n:'Dojo Loïc Piétri — Le Ray',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb','lila'],j:'Lundi, mercredi, jeudi & samedi',h:'Lun. & jeu. 17h–17h45 maternelle et 18h–19h primaire · Mer. & sam. 10h–11h maternelle et 11h–12h primaire',zn:'A',lat:43.723407,lon:7.256273},
+   {n:'Dojo Loïc Piétri — Le Ray',z:'nord',x:469.6,y:186.5,a:'60 bd Gorbella · 06100',e:['seb','lila'],j:'Lundi, mercredi, jeudi & samedi',h:'Lun. & jeu. 17h–17h45 maternelle et 18h–19h primaire · Mer. 10h–11h maternelle et 11h–12h primaire · Sam. 10h–10h45 maternelle et 11h–12h primaire',zn:'A',lat:43.723407,lon:7.256273},
    {n:'Rancher',z:'nord',x:506.3,y:174.5,a:'22 vieux chemin de Gairaut · 06100',e:['mathieu'],j:'Mercredi',h:'Maternelle 17h–17h45 · Primaire 18h–19h',zn:'A',lat:43.726019,lon:7.262376},
    {n:'Le Ray — Élite & compétition',z:'nord',x:492.5,y:187.9,a:'Siège du club · 60 bd Gorbella · 06100',e:['arnaud','franck','laurent'],j:'Mercredi, jeudi, vendredi & samedi',h:'Mer. 14h–15h30 poussins, benjamins & minimes · Jeu. 19h30–21h30 vétérans & loisirs · Ven. 19h30–22h ados & adultes compétition · Sam. 10h30–12h poussins & benjamins et 13h30–15h judo loisirs & kata',zn:'A',lat:43.723103,lon:7.260076},
    {n:'Righi',z:'nord',x:432.1,y:221.9,a:'189 av. de Pessicart · 06100',e:['fedy'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.715693,lon:7.250023},
@@ -1396,9 +1404,9 @@ footer.site a.brand .wm .t1{font-size:27px}
    {n:'Paule d’Essling',z:'centre',x:588.2,y:217.0,a:'av. Général Estienne · 06000',e:['fedy'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.71676,lon:7.276036},
    {n:'Jean-Marie Hyvert',z:'centre',x:549.8,y:231.7,a:'89 av. Georges V · 06000',e:['lila','zouk'],j:'Lundi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.713552,lon:7.269633},
    {n:'Stanislas',z:'centre',x:566.6,y:262.9,a:'25 av. Émile Bieckert · 06000',e:['lila','zouk'],j:'Mardi',h:'CP–CE2 16h30–17h45 · CM1–6e 17h45–18h45',zn:'A',lat:43.706757,lon:7.272437},
-   {n:'AnimaNice Notre-Dame',z:'centre',x:520.5,y:277.4,a:'18 rue d’Angleterre · 06000',e:['lila','laurent'],j:'Lundi & samedi',h:'Lun. 18h30–20h judo loisirs & vétérans · Sam. 10h–11h maternelle et 11h–12h primaire',zn:'B',lat:43.703604,lon:7.264745},
+   {n:'AnimaNice Notre-Dame',z:'centre',x:520.5,y:277.4,a:'18 rue d’Angleterre · 06000',e:['lila'],j:'Samedi',h:'Maternelle 10h–11h · Primaire 11h–12h',zn:'B',lat:43.703604,lon:7.264745},
    {n:'Saint-Philippe',z:'centre',x:420.4,y:287.5,a:'4 av. Beau Site · 06000',e:['momo'],j:'Jeudi',h:'Maternelle 16h45–17h45 · Primaire 18h–19h',zn:'A',lat:43.701391,lon:7.248074},
-   {n:'L’Ariane',z:'est',x:769.6,y:113.1,a:'14 rue Général Saramito · 06300',e:['moumen'],j:'Lundi & jeudi',h:'6–9 ans 17h–18h · 10–15 ans 18h–19h',zn:'B',lat:43.739387,lon:7.306272},
+   {n:'L’Ariane',z:'est',x:769.6,y:113.1,a:'14 rue Général Saramito · 06300',e:['moumen'],j:'Lundi & jeudi',h:'Maternelle 17h–18h · Primaire 18h–19h',zn:'B',lat:43.739387,lon:7.306272},
    {n:'AnimaNice Bon Voyage',z:'est',x:633.6,y:204.4,a:'2 pont René Coty · 06300',e:['moumen','fedy'],j:'Mercredi & samedi',h:'Mer. 10h–11h maternelle et 11h–12h primaire · Sam. 13h30–14h30 maternelle et 14h30–15h30 primaire',zn:'B',lat:43.7195,lon:7.2836},
    {n:'Saint-Roch',z:'est',x:678.1,y:233.0,a:'2 rue Fornero Menei · 06300',e:['moumen'],j:'Vendredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.713262,lon:7.29101},
    {n:'Jean Macé (Pasteur)',z:'est',x:620.4,y:207.7,a:'55 bd Pasteur · 06300',e:['moumen'],j:'Mercredi',h:'Maternelle 16h30–17h30 · Primaire 17h30–18h30',zn:'B',lat:43.718777,lon:7.281394},
@@ -2487,6 +2495,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         <span class="ojn-choice-arrow">→</span>
       </a>
     </div>
+    <p class="no-refund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span><b>Aucun remboursement une fois le paiement effectué.</b> C’est pourquoi le club offre <a href="https://app.ojnice.com/essai">2 cours d’essai gratuits</a> : testez avant de vous inscrire.</span></p>
   </div>
 </div>
 
