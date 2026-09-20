@@ -186,11 +186,41 @@ export default async request => {
       );
     }
 
+    // PRIORITÉ 3 : copie dans Google Drive via le script Apps Script du club
+    // (dossier drive-webhook/), uniquement si DRIVE_WEBHOOK_URL est configurée.
+    let driveSent = false;
+    const driveUrl = process.env.DRIVE_WEBHOOK_URL;
+
+    if (driveUrl && record.type === "stage") {
+      try {
+        const driveResponse = await fetch(driveUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            token: process.env.DRIVE_WEBHOOK_TOKEN || "",
+            type: record.type,
+            label: LABELS[record.type] || "Message",
+            receivedAt: new Date().toISOString(),
+            fields
+          })
+        });
+
+        driveSent = driveResponse.ok;
+
+        if (!driveResponse.ok) {
+          console.error("Drive webhook failed", driveResponse.status, await driveResponse.text());
+        }
+      } catch (driveError) {
+        console.error("Drive webhook failed", driveError);
+      }
+    }
+
     return Response.json(
       {
         ok: true,
         saved: true,
-        emailSent
+        emailSent,
+        driveSent
       },
       {
         status: 201,

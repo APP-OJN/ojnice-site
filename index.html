@@ -909,6 +909,35 @@ footer.site a.brand .wm .t1{font-size:27px}
 .page[data-page="jjb"] .phero::before{background:linear-gradient(180deg,rgba(0,108,158,.90),rgba(0,130,188,.86)),radial-gradient(120% 120% at 0 0,rgba(255,255,255,.13),transparent 45%)}
 .page[data-page="jjb"] .phero .ph-bg{opacity:.17}
 .jjb-cta .btn{flex:1 1 100%;justify-content:center}}
+
+/* ===== STAGE CJS — formulaire d'inscription (même esprit que le formulaire cours d'essai) ===== */
+.cjs-bg{background:linear-gradient(160deg,#0B86C8 0%,#1FA3E6 45%,#5CC2F1 100%);min-height:calc(100vh - 72px);padding:44px 16px 72px}
+.cjs-back{display:block;max-width:600px;margin:0 auto 16px;color:#fff;font-weight:600;font-size:14px}
+.cjs-back:hover{text-decoration:underline}
+.cjs-card{max-width:600px;margin:0 auto;background:#fff;border-radius:26px;padding:40px 40px 34px;box-shadow:0 30px 60px -30px rgba(0,40,70,.45)}
+.cjs-card .ring{width:76px;height:76px;border-radius:50%;object-fit:contain;display:block;margin-bottom:18px}
+.cjs-card .eyebrow{color:var(--blue-700);font-size:11.5px}
+.cjs-card h1{font-size:clamp(28px,4vw,36px);margin:8px 0 10px;line-height:1.1}
+.cjs-card .lead{color:var(--ink-soft);font-size:15px;line-height:1.55;margin-bottom:6px}
+.cjs-sec{font-family:var(--body);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;color:var(--blue-700);margin:26px 0 12px}
+.cjs-card .field{margin-bottom:14px}
+.cjs-card .field label{text-transform:none;letter-spacing:0;font-size:14px;font-weight:600;margin-bottom:6px}
+.cjs-card .field input{border-radius:14px;border:1px solid #E3E7E9;padding:12px 14px;font-size:15px;background:#fff}
+.cjs-card .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,159,227,.15)}
+.cjs-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.cjs-minor{display:none;background:var(--blue-050);border:1px solid var(--blue-100);border-radius:16px;padding:16px 16px 6px;margin:2px 0 16px}
+.cjs-minor.on{display:block}
+.cjs-minor .cjs-sec{margin-top:0}
+.cjs-q{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.cjs-radios{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.cjs-radios label{flex:1 1 200px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #E3E7E9;border-radius:14px;background:#fff;cursor:pointer;font-size:14px;font-weight:600}
+.cjs-radios input{accent-color:var(--blue);flex:none}
+.cjs-radios label:has(input:checked){border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,159,227,.15)}
+.cjs-consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-soft);line-height:1.45;margin:8px 0 14px;cursor:pointer}
+.cjs-consent input{margin-top:3px;accent-color:var(--blue);flex:none}
+.cjs-card .btn{width:100%;justify-content:center;margin-top:4px}
+.cjs-card .form-ok{margin-top:16px;color:var(--blue-700);font-weight:600;line-height:1.45}
+@media(max-width:520px){.cjs-grid2{grid-template-columns:1fr}.cjs-card{padding:28px 20px 26px}.cjs-bg{padding:24px 12px 48px}}
 </style>
 
 <div class="progress" id="prog"></div>
@@ -1197,6 +1226,57 @@ footer.site a.brand .wm .t1{font-size:27px}
   </div></section>
 </div>
 
+<!-- ================= STAGE CJS — INSCRIPTION ================= -->
+<div class="page" data-page="stage-cjs">
+  <div class="cjs-bg">
+    <a class="cjs-back" data-nav="stages" href="#stages">← Retour aux stages</a>
+    <form class="cjs-card" id="cjs-form" data-form="stage" onsubmit="return sendForm(event)" novalidate="false"
+          data-ok="Merci ! Votre inscription au stage CJS est bien enregistrée. Le club vous recontacte pour confirmer votre place et les modalités de règlement.">
+      <img class="ring" data-logo alt="Logo OJNice">
+      <span class="eyebrow">Olympic Judo Nice</span>
+      <h1>Stage CJS — Inscription</h1>
+      <p class="lead">Cadets, juniors et seniors · vacances d'automne. Remplissez ce formulaire, le club vous recontacte pour confirmer votre place et les modalités de règlement.</p>
+      <input type="hidden" data-f="Objet" value="Inscription stage CJS — vacances d'automne 2026">
+
+      <div class="cjs-sec">Le stagiaire</div>
+      <div class="cjs-grid2">
+        <div class="field"><label for="cjs-nom">Nom</label><input id="cjs-nom" type="text" data-f="Nom" required autocomplete="family-name"></div>
+        <div class="field"><label for="cjs-prenom">Prénom</label><input id="cjs-prenom" type="text" data-f="Prénom" required autocomplete="given-name"></div>
+      </div>
+      <div class="field"><label for="cjs-ddn">Date de naissance</label><input id="cjs-ddn" type="date" data-f="Date de naissance" required></div>
+
+      <div class="cjs-sec">Contact</div>
+      <div class="cjs-grid2">
+        <div class="field"><label for="cjs-tel">Téléphone</label><input id="cjs-tel" type="tel" data-f="Téléphone" required autocomplete="tel" placeholder="06 XX XX XX XX"></div>
+        <div class="field"><label for="cjs-mail">E-mail</label><input id="cjs-mail" type="email" data-f="E-mail" required autocomplete="email" placeholder="vous@exemple.fr"></div>
+      </div>
+
+      <div class="cjs-sec">Contact d'urgence</div>
+      <div class="cjs-grid2">
+        <div class="field"><label for="cjs-urg-nom">Nom et prénom</label><input id="cjs-urg-nom" type="text" data-f="Contact d'urgence — nom" required></div>
+        <div class="field"><label for="cjs-urg-tel">Téléphone</label><input id="cjs-urg-tel" type="tel" data-f="Contact d'urgence — téléphone" required placeholder="06 XX XX XX XX"></div>
+      </div>
+
+      <div class="cjs-minor" id="cjs-minor">
+        <div class="cjs-sec">Stagiaire mineur</div>
+        <div class="field"><label for="cjs-resp">Nom et prénom du responsable légal</label><input id="cjs-resp" type="text" data-f="Responsable légal"></div>
+        <span class="cjs-q">Autorisation à rentrer seul après le stage</span>
+        <div class="cjs-radios">
+          <label><input type="radio" name="cjs-seul" value="Oui"> Oui, autorisé à rentrer seul</label>
+          <label><input type="radio" name="cjs-seul" value="Non"> Non, un adulte vient le chercher</label>
+        </div>
+      </div>
+      <input type="hidden" data-f="Mineur" id="cjs-mineur-f" value="">
+      <input type="hidden" data-f="Autorisation à rentrer seul" id="cjs-seul-f" value="">
+
+      <label class="cjs-consent"><input type="checkbox" required> J'accepte que ces informations soient utilisées par l'Olympic Judo Nice pour organiser le stage.</label>
+      <p class="no-refund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span><b>Aucun remboursement une fois le stage réglé.</b> Le règlement se fait auprès du club après confirmation de votre place.</span></p>
+      <button class="btn btn-dark" type="submit">Envoyer mon inscription <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+      <p class="form-ok" style="display:none"></p>
+    </form>
+  </div>
+</div>
+
 <!-- ================= CONTACT ================= -->
 <div class="page" data-page="contact">
   <div class="phero"><div class="wrap in-w reveal">
@@ -1444,7 +1524,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   var DEFAULT_STAGES=[
     {t:'Stage élite',tag:'Compétiteurs',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Poussins · benjamins · minimes',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'80€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-elite-automne-2026',img:'stage-elite-automne-2026.jpg',alt:false},
     {t:'Stage loisirs',tag:'Tous niveaux',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Dernière année de maternelle → CM2',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'100€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-loisirs-vacances-automne',img:'stage-loisirs-automne-2026.jpg',alt:false},
-    {t:'Stage CJS',tag:'Cadets → seniors',days:'dates à venir',dojo:'Dojo du Ray / Loïc Piétri',who:'Perfectionnement technique',price:'',alt:true},
+    {t:'Stage CJS',tag:'Cadets → seniors',days:'dates à venir',dojo:'Dojo du Ray / Loïc Piétri',who:'Perfectionnement technique',price:'',form:'#stage-cjs',alt:true},
     {t:'Stage JJB',tag:'Jiu-jitsu brésilien',days:'dates à venir',dojo:'Lieu à confirmer',who:'Enfants & adultes',price:'',alt:true}
   ];
   var coaches=Object.keys(EDUC).map(function(k){
@@ -1473,7 +1553,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   function stageCard(s,delay){var cal='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';var loc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>';var pers='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>';
     var open=!!s.url, price=(open&&s.price&&/\d/.test(s.price))?s.price+' <small>/ sem.</small>':'À venir';
     var poster=s.img?'<a class="sposter" href="'+s.img+'" target="_blank" rel="noopener" title="Voir l\'affiche en grand"><img src="'+s.img+'" alt="Affiche '+s.t.replace(/"/g,'')+'" loading="lazy"></a>':'';
-    return '<div class="scard reveal" style="transition-delay:'+delay+'s"><div class="top'+(s.alt?' alt':'')+'"><h3>'+s.t+'</h3><span class="tag">'+s.tag+'</span></div>'+poster+'<div class="m"><div class="row">'+cal+'Vacances d\'automne · '+s.days+'</div>'+(s.hours?'<div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+s.hours+'</div>':'')+'<div class="row">'+loc+s.dojo+'</div><div class="row">'+pers+s.who+'</div>'+(s.opts&&s.opts.length?'<div class="sopts"><b>Options payantes*</b>'+s.opts.map(function(o){return '<div class="sopt"><span>'+o[0]+'</span><strong>'+o[1]+'</strong></div>';}).join('')+(s.note?'<div class="snote">'+s.note+'</div>':'')+'</div>':'')+'</div><div class="foot"><div class="price">'+price+'</div><a class="btn btn-dark sm" href="'+(s.url||'#contact')+'"'+(open?' target="_blank" rel="noopener"':' onclick="prefillStage(\''+s.t.replace(/'/g,'')+'\')"')+'>'+(open?'S\'inscrire':'Être prévenu')+' <span class="ci">'+arrow+'</span></a></div></div>';}
+    return '<div class="scard reveal" style="transition-delay:'+delay+'s"><div class="top'+(s.alt?' alt':'')+'"><h3>'+s.t+'</h3><span class="tag">'+s.tag+'</span></div>'+poster+'<div class="m"><div class="row">'+cal+'Vacances d\'automne · '+s.days+'</div>'+(s.hours?'<div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+s.hours+'</div>':'')+'<div class="row">'+loc+s.dojo+'</div><div class="row">'+pers+s.who+'</div>'+(s.opts&&s.opts.length?'<div class="sopts"><b>Options payantes*</b>'+s.opts.map(function(o){return '<div class="sopt"><span>'+o[0]+'</span><strong>'+o[1]+'</strong></div>';}).join('')+(s.note?'<div class="snote">'+s.note+'</div>':'')+'</div>':'')+'</div><div class="foot"><div class="price">'+price+'</div><a class="btn btn-dark sm" href="'+(s.url||s.form||'#contact')+'"'+(open?' target="_blank" rel="noopener"':(s.form?'':' onclick="prefillStage(\''+s.t.replace(/'/g,'')+'\')"'))+'>'+(open||s.form?'S\'inscrire':'Être prévenu')+' <span class="ci">'+arrow+'</span></a></div></div>';}
   function coachCard(c,delay){var init=c.n.split(' ').map(function(x){return x[0];}).slice(0,2).join('');
     var dj=c.dojos.map(function(d){return '<span class="dj">'+d+'</span>';}).join('');
     return '<div class="coach reveal" data-n="'+esc(c.n)+'" data-dojos="'+esc(c.dojos.join('|'))+'" data-cat="'+c.cat.join(' ')+'" data-z="'+c.z.join(' ')+'" style="transition-delay:'+delay+'s"><div class="ch"><div class="av">'+init+'</div><div><div class="nm">'+c.n+'</div><div class="role">'+c.role+'</div></div></div><div class="dojos">'+dj+'</div><a class="btn btn-tel sm" href="tel:'+c.tel+'">'+c.tel.replace(/(\d{2})(?=\d)/g,'$1 ').trim()+' <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 2.5a2 2 0 0 1-.6 1.9L7.6 9.6a16 16 0 0 0 6 6l1.5-1.4a2 2 0 0 1 1.9-.6l2.5.5a2 2 0 0 1 1.7 2Z"/></svg></span></a></div>';}
@@ -1574,6 +1654,26 @@ footer.site a.brand .wm .t1{font-size:27px}
     mt.addEventListener('click',function(e){var s=e.target.closest('span');if(s)goDojo(s.getAttribute('data-d'));});
   })();
 
+  /* ---- stage CJS : bloc « stagiaire mineur » ---- */
+  (function(){
+    var f=document.getElementById('cjs-form');if(!f)return;
+    var ddn=document.getElementById('cjs-ddn'),box=document.getElementById('cjs-minor'),resp=document.getElementById('cjs-resp'),
+        fMin=document.getElementById('cjs-mineur-f'),fSeul=document.getElementById('cjs-seul-f'),
+        radios=[].slice.call(f.querySelectorAll('input[name="cjs-seul"]'));
+    function age(v){var b=new Date(v),t=new Date();if(!v||isNaN(b))return null;var a=t.getFullYear()-b.getFullYear(),m=t.getMonth()-b.getMonth();if(m<0||(m===0&&t.getDate()<b.getDate()))a--;return a;}
+    function sync(){
+      var a=age(ddn.value),minor=a!==null&&a>=0&&a<18;
+      box.classList.toggle('on',minor);
+      fMin.value=a===null?'':(minor?'Oui ('+a+' ans)':'Non ('+a+' ans)');
+      resp.required=minor;radios.forEach(function(r){r.required=minor;});
+      if(!minor){resp.value='';radios.forEach(function(r){r.checked=false;});fSeul.value='';}
+      else{var c=radios.filter(function(r){return r.checked;})[0];fSeul.value=c?c.value:'';}
+    }
+    ddn.addEventListener('input',sync);ddn.addEventListener('change',sync);
+    radios.forEach(function(r){r.addEventListener('change',sync);});
+    f.addEventListener('ojn:sent',function(){setTimeout(sync,0);});
+  })();
+
   /* ---- formulaires: envoi par mailto ---- */
   window.prefillStage=function(nom){
     location.hash='contact';
@@ -1636,13 +1736,15 @@ footer.site a.brand .wm .t1{font-size:27px}
       }
 
       if(ok){
-        ok.textContent='Merci ! Votre message a bien été envoyé au club. Nous vous répondons sous 48 h.';
+        ok.textContent=form.getAttribute('data-ok')||'Merci ! Votre message a bien été envoyé au club. Nous vous répondons sous 48 h.';
         ok.style.display='block';
       }
 
       form.querySelectorAll('[data-f]').forEach(function(i){
-        i.value='';
+        if(i.type!=='hidden')i.value='';
       });
+      if(typeof form.reset==='function')form.reset();
+      try{form.dispatchEvent(new Event('ojn:sent'));}catch(x){}
 
       if(
         typeof adminAuthed!=='undefined' &&
