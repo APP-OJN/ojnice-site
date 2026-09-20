@@ -613,6 +613,9 @@ img.ring{width:46px;height:46px;border-radius:50%;object-fit:cover;background:#f
 .no-refund a{color:inherit;font-weight:700;text-decoration:underline}
 .no-refund.on-blue{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45);color:#fff;position:relative;z-index:2}
 .no-refund.on-blue svg,.no-refund.on-blue b{color:#fff}
+.stage-free{display:flex;gap:10px;align-items:flex-start;background:#EAF7FF;border:1px solid #9CD8F6;color:#145274;border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.45;margin:14px 0}
+.stage-free svg{width:18px;height:18px;flex:none;margin-top:1px;color:#1599D4}
+.stage-free b{color:#0B3E5B}
 .pay-note{position:relative;z-index:2;margin-top:16px;font-size:12.5px;color:rgba(255,255,255,.85)}
 @media(max-width:640px){.pay-cards{grid-template-columns:1fr}.pay-block{padding:24px}}
 
@@ -1231,11 +1234,11 @@ footer.site a.brand .wm .t1{font-size:27px}
   <div class="cjs-bg">
     <a class="cjs-back" data-nav="stages" href="#stages">← Retour aux stages</a>
     <form class="cjs-card" id="cjs-form" data-form="stage" onsubmit="return sendForm(event)"
-          data-ok="Merci ! Votre inscription au stage CJS est bien enregistrée. Le club vous recontacte pour confirmer votre place et les modalités de règlement.">
+          data-ok="Merci ! Votre inscription au stage CJS est bien enregistrée. Le club vous recontacte pour confirmer votre place.">
       <img class="ring" data-logo alt="Logo OJNice">
       <span class="eyebrow">Olympic Judo Nice</span>
       <h1>Stage CJS — Inscription</h1>
-      <p class="lead">Cadets, juniors et seniors · vacances d'automne. Remplissez ce formulaire, le club vous recontacte pour confirmer votre place et les modalités de règlement.</p>
+      <p class="lead">Cadets, juniors et seniors · vacances d'automne. Stage gratuit, sur inscription. Remplissez ce formulaire : le club vous recontacte pour confirmer votre place.</p>
       <input type="hidden" data-f="Objet" value="Inscription stage CJS — vacances d'automne 2026">
 
       <div class="cjs-sec">Le stagiaire</div>
@@ -1270,7 +1273,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       <input type="hidden" data-f="Autorisation à rentrer seul" id="cjs-seul-f" value="">
 
       <label class="cjs-consent"><input type="checkbox" required> J'accepte que ces informations soient utilisées par l'Olympic Judo Nice pour organiser le stage.</label>
-      <p class="no-refund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span><b>Aucun remboursement une fois le stage réglé.</b> Le règlement se fait auprès du club après confirmation de votre place.</span></p>
+      <p class="stage-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg><span><b>Stage gratuit — inscription obligatoire.</b> Votre place sera confirmée par le club après réception du formulaire.</span></p>
       <button class="btn btn-dark" type="submit">Envoyer mon inscription <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
       <p class="form-ok" style="display:none"></p>
     </form>
@@ -1524,7 +1527,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   var DEFAULT_STAGES=[
     {t:'Stage élite',tag:'Compétiteurs',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Poussins · benjamins · minimes',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'80€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-elite-automne-2026',img:'stage-elite-automne-2026.jpg',alt:false},
     {t:'Stage loisirs',tag:'Tous niveaux',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Dernière année de maternelle → CM2',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'100€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-loisirs-vacances-automne',img:'stage-loisirs-automne-2026.jpg',alt:false},
-    {t:'Stage CJS',tag:'Cadets → seniors',days:'dates à venir',dojo:'Dojo du Ray / Loïc Piétri',who:'Perfectionnement technique',price:'',form:'#stage-cjs',alt:true},
+    {t:'Stage CJS',tag:'Cadets → seniors',days:'dates à venir',dojo:'Dojo du Ray / Loïc Piétri',who:'Perfectionnement technique',price:'Gratuit',form:'#stage-cjs',alt:true},
     {t:'Stage JJB',tag:'Jiu-jitsu brésilien',days:'dates à venir',dojo:'Lieu à confirmer',who:'Enfants & adultes',price:'',alt:true}
   ];
   var coaches=Object.keys(EDUC).map(function(k){
@@ -1551,7 +1554,7 @@ footer.site a.brand .wm .t1{font-size:27px}
 /* Un stage affiche son tarif uniquement quand son inscription est ouverte (lien renseigne) ;
      sinon « A venir ». */
   function stageCard(s,delay){var cal='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';var loc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>';var pers='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>';
-    var open=!!s.url, price=(open&&s.price&&/\d/.test(s.price))?s.price+' <small>/ sem.</small>':'À venir';
+    var open=!!s.url, price=(s.form&&s.price==='Gratuit')?'Gratuit':((open&&s.price&&/\d/.test(s.price))?s.price+' <small>/ sem.</small>':'À venir');
     var poster=s.img?'<a class="sposter" href="'+s.img+'" target="_blank" rel="noopener" title="Voir l\'affiche en grand"><img src="'+s.img+'" alt="Affiche '+s.t.replace(/"/g,'')+'" loading="lazy"></a>':'';
     return '<div class="scard reveal" style="transition-delay:'+delay+'s"><div class="top'+(s.alt?' alt':'')+'"><h3>'+s.t+'</h3><span class="tag">'+s.tag+'</span></div>'+poster+'<div class="m"><div class="row">'+cal+'Vacances d\'automne · '+s.days+'</div>'+(s.hours?'<div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+s.hours+'</div>':'')+'<div class="row">'+loc+s.dojo+'</div><div class="row">'+pers+s.who+'</div>'+(s.opts&&s.opts.length?'<div class="sopts"><b>Options payantes*</b>'+s.opts.map(function(o){return '<div class="sopt"><span>'+o[0]+'</span><strong>'+o[1]+'</strong></div>';}).join('')+(s.note?'<div class="snote">'+s.note+'</div>':'')+'</div>':'')+'</div><div class="foot"><div class="price">'+price+'</div><a class="btn btn-dark sm" href="'+(s.url||s.form||'#contact')+'"'+(open?' target="_blank" rel="noopener"':(s.form?'':' onclick="prefillStage(\''+s.t.replace(/'/g,'')+'\')"'))+'>'+(open||s.form?'S\'inscrire':'Être prévenu')+' <span class="ci">'+arrow+'</span></a></div></div>';}
   function coachCard(c,delay){var init=c.n.split(' ').map(function(x){return x[0];}).slice(0,2).join('');
