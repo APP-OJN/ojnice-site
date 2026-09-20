@@ -1,11 +1,12 @@
 # Copie des inscriptions dans Google Drive
 
-Chaque inscription envoyée depuis le site (formulaire du stage CJS, et tout formulaire de type « stage ») est déjà :
+Chaque inscription envoyée depuis le site (formulaire du stage CJS, et tout formulaire de type « stage ») est :
 
 1. enregistrée dans l'espace admin du site (onglet **Messages**) ;
-2. envoyée par e-mail à `infos.ojnice@gmail.com`.
+2. envoyée par e-mail à `infos.ojnice@gmail.com` par ce script Google ;
+3. copiée dans Google Drive avec une ligne récapitulative et un document par personne.
 
-Ce dossier ajoute une **troisième copie, dans Google Drive** : une feuille de calcul récapitulative et un document par personne inscrite. Le site ne parle jamais directement à Google : la fonction `netlify/functions/cms-message.mjs` transmet l'inscription à un petit script Google Apps Script (`Code.gs`) qui écrit dans le Drive du club.
+Le site ne parle jamais directement à Google : la fonction `netlify/functions/cms-message.mjs` transmet l'inscription à un petit script Google Apps Script (`Code.gs`) qui écrit dans le Drive du club et envoie la notification. Aucun mot de passe Gmail ni validation en deux étapes ne sont nécessaires.
 
 Tant que les deux variables ci-dessous ne sont pas renseignées dans Netlify, cette copie est simplement ignorée — rien ne casse.
 

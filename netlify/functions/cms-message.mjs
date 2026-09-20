@@ -175,15 +175,21 @@ export default async request => {
 
     // PRIORITÉ 2 : notification email.
     let emailSent = false;
+    const hasSmtpPassword = Boolean(
+      (process.env.GMAIL_SMTP_APP_PASSWORD || "")
+        .replace(/\s+/g, "")
+    );
 
-    try {
-      await sendNotification(record, fields);
-      emailSent = true;
-    } catch (mailError) {
-      console.error(
-        "Contact email notification failed",
-        mailError
-      );
+    if (hasSmtpPassword) {
+      try {
+        await sendNotification(record, fields);
+        emailSent = true;
+      } catch (mailError) {
+        console.error(
+          "Contact email notification failed",
+          mailError
+        );
+      }
     }
 
     // PRIORITÉ 3 : copie dans Google Drive via le script Apps Script du club
@@ -201,14 +207,38 @@ export default async request => {
             type: record.type,
             label: LABELS[record.type] || "Message",
             receivedAt: new Date().toISOString(),
+            notifyEmail: !emailSent,
             fields
           })
         });
 
-        driveSent = driveResponse.ok;
+        const driveText = await driveResponse.text();
+        let driveResult = null;
 
-        if (!driveResponse.ok) {
-          console.error("Drive webhook failed", driveResponse.status, await driveResponse.text());
+        try {
+          driveResult = JSON.parse(driveText);
+        } catch {
+          driveResult = null;
+        }
+
+        driveSent = Boolean(
+          driveResponse.ok &&
+          driveResult &&
+          driveResult.ok === true &&
+          driveResult.driveSent !== false
+        );
+
+        if (
+          !emailSent &&
+          driveResponse.ok &&
+          driveResult &&
+          driveResult.emailSent === true
+        ) {
+          emailSent = true;
+        }
+
+        if (!driveSent) {
+          console.error("Drive webhook failed", driveResponse.status, driveText);
         }
       } catch (driveError) {
         console.error("Drive webhook failed", driveError);

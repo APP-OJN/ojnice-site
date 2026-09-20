@@ -5,6 +5,7 @@
  * À chaque inscription :
  *   1. une ligne est ajoutée à la feuille de calcul récapitulative ;
  *   2. un document Google est créé pour la personne, dans un sous-dossier par stage.
+ *   3. une notification est envoyée par e-mail au club si le site ne l'a pas déjà fait.
  *
  * Arborescence créée automatiquement dans le Drive du compte qui déploie ce script :
  *   OJNice — Inscriptions stages/
@@ -20,6 +21,7 @@ var TOKEN = 'CHANGE-MOI';
 
 var FOLDER_NAME = 'OJNice — Inscriptions stages';
 var SHEET_NAME  = 'Inscriptions — récapitulatif';
+var EMAIL_TO   = 'infos.ojnice@gmail.com';
 var TZ          = 'Europe/Paris';
 
 function doPost(e) {
@@ -61,7 +63,25 @@ function doPost(e) {
     doc.saveAndClose();
     DriveApp.getFileById(doc.getId()).moveTo(stageFolder);
 
-    return json_({ ok: true });
+    // 3. Notification e-mail sans mot de passe SMTP : Apps Script l'envoie
+    // avec le compte Google qui possède et exécute ce déploiement.
+    var emailSent = false;
+    var emailError = '';
+    if (data.notifyEmail !== false) {
+      try {
+        sendNotification_(data, fields, stageName);
+        emailSent = true;
+      } catch (mailErr) {
+        emailError = String(mailErr);
+      }
+    }
+
+    return json_({
+      ok: true,
+      driveSent: true,
+      emailSent: emailSent,
+      emailError: emailError
+    });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   }
@@ -104,6 +124,46 @@ function ensureHeaders_(sh, wanted) {
     sh.getRange(1, current.length + 1, 1, missing.length).setValues([missing]).setFontWeight('bold');
   }
   return current.concat(missing);
+}
+
+function sendNotification_(data, fields, stageName) {
+  var label = String(data.label || data.type || 'Stage');
+  var subject = '[OJNice.com] ' + label + (stageName ? ' — ' + stageName : '');
+  var keys = Object.keys(fields);
+  var body = 'Nouvelle inscription depuis ojnice.com\n\nType : ' + label + '\n\n' +
+    keys.map(function (key) {
+      return key + ' : ' + String(fields[key] || '—');
+    }).join('\n\n');
+  var htmlBody = '<h2>Nouvelle inscription depuis ojnice.com</h2>' +
+    '<p><strong>Type :</strong> ' + escapeHtml_(label) + '</p>' +
+    keys.map(function (key) {
+      return '<p><strong>' + escapeHtml_(key) + '</strong><br>' +
+        escapeHtml_(String(fields[key] || '—')).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  var replyTo = String(fields['E-mail'] || fields['Email'] || '').trim();
+  var message = {
+    to: EMAIL_TO,
+    subject: subject,
+    body: body,
+    htmlBody: htmlBody,
+    name: 'Site Olympic Judo Nice'
+  };
+  if (replyTo) message.replyTo = replyTo;
+  MailApp.sendEmail(message);
+}
+
+function escapeHtml_(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Fonction manuelle sans envoi : elle sert uniquement à autoriser MailApp
+// lors de l'installation initiale du script.
+function authorizeMail() {
+  return MailApp.getRemainingDailyQuota();
 }
 
 function json_(o) {
