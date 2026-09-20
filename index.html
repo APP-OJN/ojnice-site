@@ -922,6 +922,9 @@ footer.site a.brand .wm .t1{font-size:27px}
 .cjs-card .eyebrow{color:var(--blue-700);font-size:11.5px}
 .cjs-card h1{font-size:clamp(28px,4vw,36px);margin:8px 0 10px;line-height:1.1}
 .cjs-card .lead{color:var(--ink-soft);font-size:15px;line-height:1.55;margin-bottom:6px}
+.cjs-details{display:grid;gap:8px;background:var(--blue-050);border:1px solid var(--blue-100);border-radius:16px;padding:16px;margin:18px 0 4px;color:var(--ink-soft);font-size:13.5px;line-height:1.45}
+.cjs-detail{display:grid;grid-template-columns:86px 1fr;gap:10px}
+.cjs-detail b{color:var(--blue-700)}
 .cjs-sec{font-family:var(--body);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;color:var(--blue-700);margin:26px 0 12px}
 .cjs-card .field{margin-bottom:14px}
 .cjs-card .field label{text-transform:none;letter-spacing:0;font-size:14px;font-weight:600;margin-bottom:6px}
@@ -940,7 +943,7 @@ footer.site a.brand .wm .t1{font-size:27px}
 .cjs-consent input{margin-top:3px;accent-color:var(--blue);flex:none}
 .cjs-card .btn{width:100%;justify-content:center;margin-top:4px}
 .cjs-card .form-ok{margin-top:16px;color:var(--blue-700);font-weight:600;line-height:1.45}
-@media(max-width:520px){.cjs-grid2{grid-template-columns:1fr}.cjs-card{padding:28px 20px 26px}.cjs-bg{padding:24px 12px 48px}}
+@media(max-width:520px){.cjs-grid2{grid-template-columns:1fr}.cjs-card{padding:28px 20px 26px}.cjs-bg{padding:24px 12px 48px}.cjs-detail{grid-template-columns:1fr;gap:2px}}
 </style>
 
 <div class="progress" id="prog"></div>
@@ -1238,8 +1241,17 @@ footer.site a.brand .wm .t1{font-size:27px}
       <img class="ring" data-logo alt="Logo OJNice">
       <span class="eyebrow">Olympic Judo Nice</span>
       <h1>Stage CJS — Inscription</h1>
-      <p class="lead">Cadets, juniors et seniors · vacances d'automne. Stage gratuit, sur inscription. Remplissez ce formulaire : le club vous recontacte pour confirmer votre place.</p>
-      <input type="hidden" data-f="Objet" value="Inscription stage CJS — vacances d'automne 2026">
+      <p class="lead">Cadets, juniors et seniors · judo et PPG. Stage gratuit, sur inscription. Remplissez ce formulaire : le club vous recontacte pour confirmer votre place.</p>
+      <div class="cjs-details">
+        <div class="cjs-detail"><b>Dates</b><span>Du 26 au 30 octobre 2026</span></div>
+        <div class="cjs-detail"><b>Lieu</b><span>Dojo du Ray · 58 boulevard Gorbella, 06100 Nice</span></div>
+        <div class="cjs-detail"><b>Planning</b><span>Lundi 10h–12h · Mardi 10h–12h · Mercredi 18h–20h · Jeudi 10h–12h · Vendredi 18h–20h</span></div>
+        <div class="cjs-detail"><b>Contact</b><span>Laurent · Franck · Arnaud · Moumen — <a href="tel:+33699386585">06 99 38 65 85</a></span></div>
+      </div>
+      <input type="hidden" data-f="Objet" value="Inscription stage CJS — du 26 au 30 octobre 2026">
+      <input type="hidden" data-f="Stage" value="Stage élite CJS — judo et PPG">
+      <input type="hidden" data-f="Dates et horaires" value="26 au 30 octobre 2026 — lundi 10h-12h, mardi 10h-12h, mercredi 18h-20h, jeudi 10h-12h, vendredi 18h-20h">
+      <input type="hidden" data-f="Lieu" value="Dojo du Ray — 58 boulevard Gorbella, 06100 Nice">
 
       <div class="cjs-sec">Le stagiaire</div>
       <div class="cjs-grid2">
@@ -1527,7 +1539,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   var DEFAULT_STAGES=[
     {t:'Stage élite',tag:'Compétiteurs',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Poussins · benjamins · minimes',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'80€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-elite-automne-2026',img:'stage-elite-automne-2026.jpg',alt:false},
     {t:'Stage loisirs',tag:'Tous niveaux',days:'19 → 23 octobre 2026',hours:'8h30 – 18h*',dojo:'Dojo du Ray / Loïc Piétri',who:'Dernière année de maternelle → CM2',opts:[['Ramassage','+20 €*'],['Garderie · 8h30–9h30 et 16h30–18h','+30 €*']],note:'* Horaires et options payantes, en supplément du tarif de la semaine.',price:'100€',url:'https://www.helloasso.com/associations/ojnice/adhesions/stage-judo-loisirs-vacances-automne',img:'stage-loisirs-automne-2026.jpg',alt:false},
-    {t:'Stage CJS',tag:'Cadets → seniors',days:'dates à venir',dojo:'Dojo du Ray / Loïc Piétri',who:'Perfectionnement technique',price:'Gratuit',form:'#stage-cjs',alt:true},
+    {t:'Stage élite CJS',tag:'Cadets → seniors',days:'26 → 30 octobre 2026',hours:'Lun., mar. & jeu. 10h–12h · mer. & ven. 18h–20h',dojo:'Dojo du Ray · 58 Bd Gorbella, Nice',who:'Judo · PPG · perfectionnement',price:'Gratuit',form:'#stage-cjs',img:'stage-cjs-automne-2026.jpg',alt:true},
     {t:'Stage JJB',tag:'Jiu-jitsu brésilien',days:'dates à venir',dojo:'Lieu à confirmer',who:'Enfants & adultes',price:'',alt:true}
   ];
   var coaches=Object.keys(EDUC).map(function(k){
