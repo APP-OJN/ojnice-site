@@ -1230,7 +1230,7 @@ footer.site a.brand .wm .t1{font-size:27px}
 <div class="page" data-page="stage-cjs">
   <div class="cjs-bg">
     <a class="cjs-back" data-nav="stages" href="#stages">← Retour aux stages</a>
-    <form class="cjs-card" id="cjs-form" data-form="stage" onsubmit="return sendForm(event)" novalidate="false"
+    <form class="cjs-card" id="cjs-form" data-form="stage" onsubmit="return sendForm(event)"
           data-ok="Merci ! Votre inscription au stage CJS est bien enregistrée. Le club vous recontacte pour confirmer votre place et les modalités de règlement.">
       <img class="ring" data-logo alt="Logo OJNice">
       <span class="eyebrow">Olympic Judo Nice</span>
@@ -1663,6 +1663,7 @@ footer.site a.brand .wm .t1{font-size:27px}
     function age(v){var b=new Date(v),t=new Date();if(!v||isNaN(b))return null;var a=t.getFullYear()-b.getFullYear(),m=t.getMonth()-b.getMonth();if(m<0||(m===0&&t.getDate()<b.getDate()))a--;return a;}
     function sync(){
       var a=age(ddn.value),minor=a!==null&&a>=0&&a<18;
+      ddn.setCustomValidity(a!==null&&a<0?'La date de naissance ne peut pas être dans le futur.':'');
       box.classList.toggle('on',minor);
       fMin.value=a===null?'':(minor?'Oui ('+a+' ans)':'Non ('+a+' ans)');
       resp.required=minor;radios.forEach(function(r){r.required=minor;});
@@ -1689,6 +1690,10 @@ footer.site a.brand .wm .t1{font-size:27px}
     e.preventDefault();
 
     var form=e.target;
+    if(typeof form.checkValidity==='function'&&!form.checkValidity()){
+      if(typeof form.reportValidity==='function')form.reportValidity();
+      return false;
+    }
     var type=form.getAttribute('data-form');
     var fields={};
 
