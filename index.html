@@ -7,6 +7,9 @@
 <meta name="description" content="Olympic Judo Nice : 1640 licenciés, 32 dojos dans tous les quartiers de Nice. Judo et jiu-jitsu brésilien, de l'éveil à 3 ans aux vétérans. Inscriptions en ligne.">
 <meta name="theme-color" content="#009FE3">
 <link rel="stylesheet" href="inscription-2026.css?v=20260914b">
+<link rel="stylesheet" href="calendrier-2026.css?v=20260921">
+<script src="calendrier-2026-data.js?v=20260921" defer></script>
+<script src="calendrier-2026.js?v=20260921" defer></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Olympic Judo Nice">
 <meta property="og:description" content="1640 licenciés, 32 dojos à Nice — de l'éveil aux vétérans.">
@@ -959,6 +962,7 @@ footer.site a.brand .wm .t1{font-size:27px}
       <a data-nav="jjb" href="#jjb">JJB</a>
       <a data-nav="actus" href="#actus">Actus / Événements</a>
       <a data-nav="stages" href="#stages">Stages</a>
+      <a data-nav="calendrier" href="#calendrier">Calendrier</a>
       <a data-nav="partenaires" href="#partenaires">Partenaires</a>
       <a data-nav="contact" href="#contact">Contact</a>
       <a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique</a>
@@ -973,6 +977,7 @@ footer.site a.brand .wm .t1{font-size:27px}
   <a data-nav="jjb" href="#jjb">Jiu-Jitsu Brésilien</a>
   <a data-nav="actus" href="#actus">Actus / Événements</a>
   <a data-nav="stages" href="#stages">Stages</a>
+  <a data-nav="calendrier" href="#calendrier">Calendrier</a>
   <a data-nav="partenaires" href="#partenaires">Partenaires</a>
   <a data-nav="contact" href="#contact">Contact</a>
   <a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique <span class="b">↗</span></a>
@@ -1125,6 +1130,57 @@ footer.site a.brand .wm .t1{font-size:27px}
     <p>Offrez à vos enfants des moments d'épanouissement et de découverte avec nos stages mis en place durant chaque période de vacances scolaires.</p>
   </div></div>
   <section class="blk"><div class="wrap"><div class="stg-grid" id="stages-grid"></div></div></section>
+</div>
+
+<!-- ================= CALENDRIER ================= -->
+<div class="page" data-page="calendrier">
+  <section class="cal-hero">
+    <div class="wrap">
+      <div class="crumbs">Accueil / Calendrier</div>
+      <span class="eyebrow">Judo · Saison 2026–2027</span>
+      <h1>Toute votre saison,<br>en un coup d’œil.</h1>
+      <p>Benjamins, minimes, cadets, juniors, seniors : retrouvez vos compétitions et rendez-vous, du département au niveau national.</p>
+      <div class="cal-hero-meta"><span>Septembre 2026 → août 2027</span><span>Sources vérifiées le 21 septembre 2026</span></div>
+    </div>
+  </section>
+  <section class="cal-body"><div class="wrap">
+    <div class="cal-official" aria-label="Calendriers officiels">
+      <a href="https://www.ffjudo.com/evenements" target="_blank" rel="noopener"><span class="cal-source-overline">National</span><strong>France Judo <span aria-hidden="true">↗</span></strong><span>Agenda fédéral et fiches des épreuves</span></a>
+      <a href="https://ligue-sud-judo.ffjudo.com/cirulaire" target="_blank" rel="noopener"><span class="cal-source-overline">Régional</span><strong>Ligue Sud PACA <span aria-hidden="true">↗</span></strong><span>Calendrier général 2026–2027</span></a>
+      <a href="https://alpes-maritimes-judo.ffjudo.com/evenement" target="_blank" rel="noopener"><span class="cal-source-overline">Départemental</span><strong>Comité CD06 <span aria-hidden="true">↗</span></strong><span>Agenda des Alpes-Maritimes</span></a>
+    </div>
+    <div class="cal-filter-panel">
+      <h2>Mon calendrier</h2>
+      <fieldset class="cal-categories"><legend>Ma catégorie</legend><div id="cal-categories"></div></fieldset>
+      <div class="cal-filter-grid">
+        <label>Niveau<select id="cal-level"><option value="">Tous les niveaux</option><option value="departemental">Départemental</option><option value="regional">Régional</option><option value="national">National</option></select></label>
+        <label>Type de rendez-vous<select id="cal-kind"><option value="">Tous les rendez-vous</option><option value="competition">Compétitions</option><option value="stage">Stages & regroupements</option><option value="arbitrage">Jeunes arbitres</option><option value="echeance">Échéances de classement</option></select></label>
+        <label>Vérification<select id="cal-status"><option value="">Toutes les dates</option><option value="published">Publication officielle retrouvée</option><option value="provisional">À confirmer</option></select></label>
+        <label>Rechercher<input id="cal-search" type="search" placeholder="Ville, tournoi, 1D…" autocomplete="off"></label>
+      </div>
+      <p class="cal-scope">Les niveaux décrivent l’épreuve, pas sa ville : un tournoi Label A à Vitrolles appartient au circuit national. Ce calendrier est consultable par tous, indépendamment des inscriptions du club.</p>
+    </div>
+    <nav class="cal-months" id="cal-months" aria-label="Filtrer par mois"></nav>
+    <div class="cal-toolbar">
+      <p id="cal-count" role="status" aria-live="polite"></p>
+      <div class="cal-actions"><button type="button" id="cal-reset">Réinitialiser</button><button type="button" id="cal-export">Exporter vers mon agenda</button><button type="button" id="cal-print">Imprimer</button></div>
+    </div>
+    <p class="cal-legend"><span class="cal-status published">Publication officielle</span> Date retrouvée chez France Judo, la Ligue ou le CD06. <span class="cal-status provisional">À confirmer</span> Prévision ou information non recoupée. Les horaires et conditions peuvent évoluer.</p>
+    <div id="cal-results"></div>
+    <noscript><p>Activez JavaScript pour utiliser les filtres. Les trois liens officiels ci-dessus restent accessibles.</p></noscript>
+    <details class="cal-method"><summary>Sources, périmètre et dates à confirmer</summary>
+      <p>Cette synthèse couvre les rendez-vous judo des cinq catégories en Alpes-Maritimes et en PACA, les championnats nationaux annoncés par la Ligue, ainsi que les tournois labellisés de l’agenda France Judo consulté le 21/09/2026. Elle n’est pas une liste exhaustive de tous les interclubs de France. Les épreuves internationales, le jujitsu et les passages de grades ne sont pas inclus.</p>
+      <p>La version de Ligue du 16/09/2026 prévaut sur les documents transmis plus anciens. Pour les finales nationales uniquement annoncées par la Ligue, la fiche affiche « Publié · Ligue Sud » : la confirmation fédérale et les horaires restent à consulter. Une présence au calendrier ne vaut pas inscription ni qualification.</p>
+      <p>Le CD06 publie déjà les regroupements des 7 octobre et 4 novembre. Sa page de téléchargement des calendriers propose encore un PDF 2024–2025 ; les autres dates départementales transmises sont donc signalées « À confirmer ».</p>
+      <ul>
+        <li><a href="https://ligue-sud-judo.ffjudo.com/uploads/sites/ligue-sud-judo/userfiles/fichier/formation/CALENDRIERS/Calendrier%20Ligue%2026-27%20-%20version%20au%2016-09.pdf" target="_blank" rel="noopener">Calendrier officiel Ligue Sud — version du 16 septembre 2026 (PDF)</a></li>
+        <li><a href="calendrier-documents/calendrier-transmis-2026-2027.pdf" target="_blank" rel="noopener">Calendrier général transmis au club (PDF, certaines dates remplacées)</a></li>
+        <li><a href="calendrier-documents/programme-minimes-2026-2027.pdf" target="_blank" rel="noopener">Programme Minimes transmis au club (PDF, année du circuit d’avril corrigée)</a></li>
+      </ul>
+      <p>Principales corrections : circuit Minimes le 3 avril <b>2027</b> ; arrêt ranking juniors le 21 février ; France équipes mixtes seniors 2D le 4 avril ; France équipes juniors le 22 mai ; France seniors 3D le 23 mai ; France seniors 2D les 5 et 6 juin. Le tournoi Minimes d’Orléans reste à confirmer : le document indique un dimanche 20 février alors que cette date tombe un samedi.</p>
+      <p>Ce calendrier est une photographie des publications consultées, mise à jour manuellement. L’export vers votre agenda est un import ponctuel, sans synchronisation automatique. Consultez la fiche de l’organisateur avant de préparer votre déplacement.</p>
+    </details>
+  </div></section>
 </div>
 
 <!-- ================= PARTENAIRES ================= -->
@@ -1401,7 +1457,7 @@ footer.site a.brand .wm .t1{font-size:27px}
         <p style="max-width:34ch;color:rgba(255,255,255,.6)">Le plus grand club de judo de la région PACA. 1640 licenciés, 32 sites, une même famille sur toute la ville de Nice.</p>
       </div>
       <div><h4>Programme</h4><a data-nav="accueil" href="#accueil">Accueil</a><a data-nav="inscription" href="#inscription">Inscription</a><a data-nav="jjb" href="#jjb">Jiu-Jitsu Brésilien</a><a data-nav="actus" href="#actus">Actus / Événements</a><a data-nav="stages" href="#stages">Stages</a><a data-nav="partenaires" href="#partenaires">Partenaires</a></div>
-      <div><h4>Pratique</h4><a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique</a><a data-nav="inscription" href="#inscription">Nos dojos</a><a data-nav="contact" href="#contact">Contact</a></div>
+      <div><h4>Pratique</h4><a data-nav="calendrier" href="#calendrier">Calendrier 2026–2027</a><a href="https://ojnicejudo.teamapproved.fr/" target="_blank" rel="noopener">Boutique</a><a data-nav="inscription" href="#inscription">Nos dojos</a><a data-nav="contact" href="#contact">Contact</a></div>
       <div><h4>Contact</h4><a href="tel:0650858881">06 50 85 88 81</a><a href="mailto:infos.ojnice@gmail.com">infos.ojnice@gmail.com</a><a href="https://instagram.com/teamojnice" target="_blank" rel="noopener">Instagram @teamojnice</a></div>
     </div>
     <div class="foot-bottom"><span>© Olympic Judo Nice — Tous droits réservés</span><span><a data-nav="admin" href="#admin" style="color:rgba(255,255,255,.55)">Espace admin</a> · <a href="https://takeop.fr" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75);text-decoration:none">Site conçu par TakeOp</a></span></div>
